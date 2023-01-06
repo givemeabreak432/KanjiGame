@@ -1,0 +1,35 @@
+[gd_scene format=2]
+
+[node name="KanjiInfo" type="MarginContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+
+[node name="KanjiTitle" type="VBoxContainer" parent="HBoxContainer"]
+margin_bottom = 600.0
+
+[node name="KanjiLabel" type="Label" parent="HBoxContainer/KanjiTitle"]
+margin_bottom = 14.0
+
+[node name="KanjiDrawn" type="TextureRect" parent="HBoxContainer/KanjiTitle"]
+margin_top = 18.0
+margin_bottom = 18.0
+
+[node name="KanjiInfo" type="VBoxContainer" parent="HBoxContainer"]
+margin_left = 4.0
+margin_right = 4.0
+margin_bottom = 600.0
+
+[node name="OnYomi" type="Label" parent="HBoxContainer/KanjiInfo"]
+margin_bottom = 14.0
+
+[node name="KunYomi" type="Label" parent="HBoxContainer/KanjiInfo"]
+margin_top = 18.0
+margin_bottom = 32.0
+
+[node name="Example" type="Label" parent="HBoxContainer/KanjiInfo"]
+margin_top = 36.0
+margin_bottom = 50.0
