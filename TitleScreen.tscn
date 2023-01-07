@@ -1,5 +1,35 @@
-[gd_scene format=2]
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/font_EN_JP.tres" type="DynamicFont" id=1]
+[ext_resource path="res://TitleScreen.gd" type="Script" id=2]
 
 [node name="TitleScreen" type="MarginContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 2 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+
+[node name="Dictionairy" type="Button" parent="VBoxContainer"]
+margin_left = 451.0
+margin_top = 270.0
+margin_right = 572.0
+margin_bottom = 298.0
+size_flags_horizontal = 4
+size_flags_vertical = 14
+custom_fonts/font = ExtResource( 1 )
+text = "Full Dictionary"
+
+[node name="Favorites" type="Button" parent="VBoxContainer"]
+margin_left = 470.0
+margin_top = 302.0
+margin_right = 553.0
+margin_bottom = 330.0
+size_flags_horizontal = 4
+size_flags_vertical = 2
+custom_fonts/font = ExtResource( 1 )
+text = "Favorites"
+
+[connection signal="pressed" from="VBoxContainer/Dictionairy" to="." method="_on_Dictionairy_pressed"]

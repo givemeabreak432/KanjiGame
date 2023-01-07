@@ -1,35 +1,117 @@
-[gd_scene format=2]
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://KanjiInfo.gd" type="Script" id=1]
+[ext_resource path="res://Assets/LINE_Seed_JP/App/OTF/LINESeedJP_A_OTF_Rg.otf" type="DynamicFontData" id=2]
+[ext_resource path="res://Assets/LINE_Seed_Sans_EN/App/OTF/LINESeedSans_A_Rg.otf" type="DynamicFontData" id=3]
+[ext_resource path="res://Assets/font_EN_JP.tres" type="DynamicFont" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 100
+font_data = ExtResource( 3 )
+fallback/0 = ExtResource( 2 )
 
 [node name="KanjiInfo" type="MarginContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 1 )
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_right = 1024.0
 margin_bottom = 600.0
 
-[node name="KanjiTitle" type="VBoxContainer" parent="HBoxContainer"]
+[node name="NavigationContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_right = 1024.0
+margin_bottom = 20.0
+
+[node name="BackButton" type="Button" parent="VBoxContainer/NavigationContainer"]
+margin_right = 20.0
+margin_bottom = 20.0
+text = "X"
+
+[node name="AddToList" type="MenuButton" parent="VBoxContainer/NavigationContainer"]
+margin_left = 24.0
+margin_right = 65.0
+margin_bottom = 20.0
+text = "ADD"
+items = [ "Favorite", null, 0, false, false, 0, 0, null, "", false ]
+switch_on_hover = true
+
+[node name="LeftButton" type="Button" parent="VBoxContainer/NavigationContainer"]
+margin_left = 69.0
+margin_right = 520.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+text = "Previous"
+
+[node name="Page" type="Label" parent="VBoxContainer/NavigationContainer"]
+margin_left = 524.0
+margin_top = 3.0
+margin_right = 569.0
+margin_bottom = 17.0
+text = "1/1000"
+
+[node name="RightButton" type="Button" parent="VBoxContainer/NavigationContainer"]
+margin_left = 573.0
+margin_right = 1024.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+text = "Next"
+
+[node name="InfoContainer" type="HSplitContainer" parent="VBoxContainer"]
+margin_top = 24.0
+margin_right = 1024.0
 margin_bottom = 600.0
+size_flags_vertical = 3
 
-[node name="KanjiLabel" type="Label" parent="HBoxContainer/KanjiTitle"]
-margin_bottom = 14.0
+[node name="KanjiTitle" type="VBoxContainer" parent="VBoxContainer/InfoContainer"]
+margin_right = 506.0
+margin_bottom = 576.0
+size_flags_horizontal = 3
+alignment = 1
 
-[node name="KanjiDrawn" type="TextureRect" parent="HBoxContainer/KanjiTitle"]
-margin_top = 18.0
-margin_bottom = 18.0
+[node name="KanjiLabel" type="Label" parent="VBoxContainer/InfoContainer/KanjiTitle"]
+margin_right = 506.0
+margin_bottom = 572.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 1 )
+text = "KANJI"
+align = 1
+valign = 1
 
-[node name="KanjiInfo" type="VBoxContainer" parent="HBoxContainer"]
-margin_left = 4.0
-margin_right = 4.0
-margin_bottom = 600.0
+[node name="KanjiDrawn" type="TextureRect" parent="VBoxContainer/InfoContainer/KanjiTitle"]
+margin_top = 576.0
+margin_right = 506.0
+margin_bottom = 576.0
 
-[node name="OnYomi" type="Label" parent="HBoxContainer/KanjiInfo"]
-margin_bottom = 14.0
+[node name="KanjiInfo" type="VBoxContainer" parent="VBoxContainer/InfoContainer"]
+margin_left = 518.0
+margin_right = 1024.0
+margin_bottom = 576.0
+size_flags_horizontal = 3
+alignment = 1
 
-[node name="KunYomi" type="Label" parent="HBoxContainer/KanjiInfo"]
-margin_top = 18.0
-margin_bottom = 32.0
+[node name="OnYomi" type="Label" parent="VBoxContainer/InfoContainer/KanjiInfo"]
+margin_top = 251.0
+margin_right = 506.0
+margin_bottom = 273.0
+custom_fonts/font = ExtResource( 4 )
+text = "On Reading"
 
-[node name="Example" type="Label" parent="HBoxContainer/KanjiInfo"]
-margin_top = 36.0
-margin_bottom = 50.0
+[node name="KunYomi" type="Label" parent="VBoxContainer/InfoContainer/KanjiInfo"]
+margin_top = 277.0
+margin_right = 506.0
+margin_bottom = 299.0
+custom_fonts/font = ExtResource( 4 )
+text = "Kun Readings"
+
+[node name="Meaning" type="Label" parent="VBoxContainer/InfoContainer/KanjiInfo"]
+margin_top = 303.0
+margin_right = 506.0
+margin_bottom = 325.0
+custom_fonts/font = ExtResource( 4 )
+text = "Meanings"
+
+[connection signal="pressed" from="VBoxContainer/NavigationContainer/BackButton" to="." method="_on_BackButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/NavigationContainer/LeftButton" to="." method="_on_LeftButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/NavigationContainer/RightButton" to="." method="_on_RightButton_pressed"]
