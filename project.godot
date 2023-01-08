@@ -8,8 +8,20 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Object",
+"class": "Kanji",
+"language": "GDScript",
+"path": "res://Kanji.gd"
+}, {
+"base": "Object",
+"class": "List",
+"language": "GDScript",
+"path": "res://List.gd"
+} ]
 _global_script_class_icons={
+"Kanji": "",
+"List": ""
 }
 
 [application]

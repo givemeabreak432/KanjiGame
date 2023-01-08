@@ -6,3 +6,4 @@ Lists should be created as its own class, as there will be methods to add, remov
 
 Current TODO:
 move functionality for list modification from kanjiinfo script to list script
+create kanji.gd class to store all kanji, read in all kanji as instances of class on startup.

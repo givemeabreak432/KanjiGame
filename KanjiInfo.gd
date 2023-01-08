@@ -1,10 +1,14 @@
 extends MarginContainer
-#importing class
-const DefaultManager = preload("List.gd") # Relative path
-onready var default_manager = DefaultManager.new()
+
+#class variable for list - loading list script. 
+const ListScript = preload("List.gd") # Relative path
+onready var current_list
+
+#loading kanji class
+const KanjiScript = preload("Kanji.gd") # Relative path
+onready var current_kanji
 
 #global var
-var jpn_dict = {}
 var current_page = 0
 #node linked var
 onready var kanji_label = $VBoxContainer/InfoContainer/KanjiTitle/KanjiLabel
@@ -17,7 +21,8 @@ onready var page = $VBoxContainer/NavigationContainer/Page # page counter
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	load_dict()
+	current_list = ListScript.new()
+	current_list.load_dict()
 	load_entry(current_page)
 	pass # Replace with function body.
 
@@ -25,31 +30,15 @@ func _ready():
 #func _process(delta):
 #	pass
 
-#load json into global jpn_dict
-func load_dict():
-	var file = File.new()
-	file.open("res://Assets/kanji-jouyou.json", File.READ)
-	var text = file.get_as_text()
-	jpn_dict = parse_json(text)
-	file.close()
-	pass
-
 #reloads current page dsiplayed with entry #
 func load_entry(entry):
-	kanji_label.text = jpn_dict.keys()[entry]
-	on_yomi.text = arr_to_string(jpn_dict[jpn_dict.keys()[entry]]["readings_on"], ", ")
-	kun_yomi.text = arr_to_string(jpn_dict[jpn_dict.keys()[entry]]["readings_kun"], ", ")
-	meaning.text = arr_to_string(jpn_dict[jpn_dict.keys()[entry]]["meanings"], ", ")
-	page.text = str(entry + 1) + "/" + str(jpn_dict.size())
-
-#simple array to string function
-func arr_to_string(arr, var del = ""):
-	var out = ""
-	for each in arr:
-		out = out + each
-		if arr[arr.size()-1] != each:
-			out = out + del
-	return out
+	current_kanji = current_list.return_entry(entry)
+	
+	kanji_label.text = current_kanji.get_kanji()
+	on_yomi.text = current_kanji.get_on_yomi(true, ", ")
+	kun_yomi.text = current_kanji.get_kun_yomi(true, ", ")
+	meaning.text = current_kanji.get_meaning(true, ", ")
+	page.text = str(entry + 1) + "/" + str(current_list.size())
 
 func add_to_list(entry, list):
 	pass
@@ -61,14 +50,14 @@ func add_to_list(entry, list):
 func _on_LeftButton_pressed():
 	current_page = current_page - 1
 	if current_page < 0:
-		current_page = jpn_dict.size() - 1		
+		current_page = current_list.size() - 1		
 	load_entry(current_page)
 	pass # Replace with function body.
 
 #navigate to next kanji page
 func _on_RightButton_pressed():
 	current_page = current_page + 1
-	if current_page == jpn_dict.size():
+	if current_page == current_list.size():
 		current_page = 0
 	load_entry(current_page)
 	pass # Replace with function body.
