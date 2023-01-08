@@ -1,14 +1,15 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://KanjiInfo.gd" type="Script" id=1]
-[ext_resource path="res://Assets/LINE_Seed_JP/App/OTF/LINESeedJP_A_OTF_Rg.otf" type="DynamicFontData" id=2]
-[ext_resource path="res://Assets/LINE_Seed_Sans_EN/App/OTF/LINESeedSans_A_Rg.otf" type="DynamicFontData" id=3]
-[ext_resource path="res://Assets/font_EN_JP.tres" type="DynamicFont" id=4]
+[ext_resource path="res://ListSelector.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/LINE_Seed_JP/App/OTF/LINESeedJP_A_OTF_Rg.otf" type="DynamicFontData" id=3]
+[ext_resource path="res://Assets/LINE_Seed_Sans_EN/App/OTF/LINESeedSans_A_Rg.otf" type="DynamicFontData" id=4]
+[ext_resource path="res://Assets/font_EN_JP.tres" type="DynamicFont" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 100
-font_data = ExtResource( 3 )
-fallback/0 = ExtResource( 2 )
+font_data = ExtResource( 4 )
+fallback/0 = ExtResource( 3 )
 
 [node name="KanjiInfo" type="MarginContainer"]
 anchor_right = 1.0
@@ -28,16 +29,10 @@ margin_right = 20.0
 margin_bottom = 20.0
 text = "X"
 
-[node name="AddToList" type="MenuButton" parent="VBoxContainer/NavigationContainer"]
-margin_left = 24.0
-margin_right = 65.0
-margin_bottom = 20.0
-text = "ADD"
-items = [ "Favorite", null, 0, false, false, 0, 0, null, "", false ]
-switch_on_hover = true
+[node name="ListSelector" parent="VBoxContainer/NavigationContainer" instance=ExtResource( 2 )]
 
 [node name="LeftButton" type="Button" parent="VBoxContainer/NavigationContainer"]
-margin_left = 69.0
+margin_left = 70.0
 margin_right = 520.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
@@ -95,23 +90,22 @@ alignment = 1
 margin_top = 251.0
 margin_right = 506.0
 margin_bottom = 273.0
-custom_fonts/font = ExtResource( 4 )
+custom_fonts/font = ExtResource( 5 )
 text = "On Reading"
 
 [node name="KunYomi" type="Label" parent="VBoxContainer/InfoContainer/KanjiInfo"]
 margin_top = 277.0
 margin_right = 506.0
 margin_bottom = 299.0
-custom_fonts/font = ExtResource( 4 )
+custom_fonts/font = ExtResource( 5 )
 text = "Kun Readings"
 
 [node name="Meaning" type="Label" parent="VBoxContainer/InfoContainer/KanjiInfo"]
 margin_top = 303.0
 margin_right = 506.0
 margin_bottom = 325.0
-custom_fonts/font = ExtResource( 4 )
+custom_fonts/font = ExtResource( 5 )
 text = "Meanings"
-
 [connection signal="pressed" from="VBoxContainer/NavigationContainer/BackButton" to="." method="_on_BackButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/NavigationContainer/LeftButton" to="." method="_on_LeftButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/NavigationContainer/RightButton" to="." method="_on_RightButton_pressed"]

@@ -16,19 +16,28 @@ onready var on_yomi = $VBoxContainer/InfoContainer/KanjiInfo/OnYomi #line 6
 onready var kun_yomi = $VBoxContainer/InfoContainer/KanjiInfo/KunYomi # line 7
 onready var meaning = $VBoxContainer/InfoContainer/KanjiInfo/Meaning # line 5
 onready var page = $VBoxContainer/NavigationContainer/Page # page counter
-
+onready var list_selector = $VBoxContainer/NavigationContainer/ListSelector
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	current_list = ListScript.new()
-	current_list.load_dict()
-	load_entry(current_page)
+	load_list()
+	
+	#connect signals
+	list_selector.connect("select_list", self, "load_list")
 	pass # Replace with function body.
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+#load current list. If nothing passed in will load default list.
+func load_list(list = null):
+	print(list)
+	current_list = ListScript.new()
+	if list != null:
+		current_list.load_dict(list)
+	else:
+		current_list.load_dict()
+		
+	load_entry(current_page)
+	pass
 
 #reloads current page dsiplayed with entry #
 func load_entry(entry):

@@ -5,5 +5,11 @@ kanjiInfo screen will populate based on list of kanji provided for it. By defaul
 Lists should be created as its own class, as there will be methods to add, remove, check for duplicates within lists,, or check for duplicate names.
 
 Current TODO:
-move functionality for list modification from kanjiinfo script to list script
-create kanji.gd class to store all kanji, read in all kanji as instances of class on startup.
+Work on list selector. 
+-create new lists
+-delete lists
+-load lists
+-append kanji to lists
+-remove kanji from list
+
+SORT KANJI!
