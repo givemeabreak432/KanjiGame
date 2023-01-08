@@ -2,6 +2,7 @@ class_name List extends Object
 
 #load kanji class
 const KanjiScript = preload("Kanji.gd") # Relative path
+const kanji_file = "kanji-jouyou.json"
 onready var kanji
 
 #variables
@@ -15,9 +16,9 @@ func _ready():
 func _init():
 	pass
 
-func load_dict():
+func load_dict(file_name = kanji_file):
 	var file = File.new()
-	file.open("res://Assets/kanji-jouyou.json", File.READ)
+	file.open("res://Assets/" + file_name, File.READ)
 	var text = file.get_as_text()
 	jpn_dict = parse_json(text)
 	file.close()
@@ -27,6 +28,13 @@ func load_dict():
 		kanji = Kanji.new()
 		kanji.kanji_setter(jpn_dict.keys()[each], jpn_dict[jpn_dict.keys()[each]]["readings_on"], jpn_dict[jpn_dict.keys()[each]]["readings_kun"], jpn_dict[jpn_dict.keys()[each]]["meanings"])
 		kanji_list.append(kanji)
+	pass
+	
+#save dict as a json file, readable by load_dict(). 
+func save_dict(file_name):
+	var file = File.new()
+	file.open("res://Assets/" + file_name, File.WRITE)
+	file.close()
 	pass
 
 func return_entry(entry):
