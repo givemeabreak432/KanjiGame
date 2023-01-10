@@ -1,11 +1,27 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://ListSelector.gd" type="Script" id=1]
+[ext_resource path="res://ListCreator.tscn" type="PackedScene" id=2]
 
 [node name="ListSelector" type="MenuButton"]
 margin_left = 24.0
 margin_right = 66.0
 margin_bottom = 20.0
 text = "Lists"
+items = [ "New", null, 0, false, false, 0, 0, null, "", false, "Delete", null, 0, false, false, 1, 0, null, "", false ]
 switch_on_hover = true
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="ListCreator" parent="." instance=ExtResource( 2 )]
+
+[node name="ListDeleter" type="PopupPanel" parent="."]
+margin_right = 8.0
+margin_bottom = 8.0
+
+[node name="EmptyList" type="ConfirmationDialog" parent="."]
+margin_right = 200.0
+margin_bottom = 70.0
+dialog_text = "Selected List is Empty!"

@@ -9,6 +9,9 @@ onready var kanji
 var jpn_dict = {}
 var kanji_list = []
 
+#send signals
+signal empty_list
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -23,11 +26,14 @@ func load_dict(file_name = kanji_file):
 	jpn_dict = parse_json(text)
 	file.close()
 	
+	if not is_instance_valid(jpn_dict):
+		_empty_list()
 	#creating kanji objects
-	for each in jpn_dict.size():
-		kanji = Kanji.new()
-		kanji.kanji_setter(jpn_dict.keys()[each], jpn_dict[jpn_dict.keys()[each]]["readings_on"], jpn_dict[jpn_dict.keys()[each]]["readings_kun"], jpn_dict[jpn_dict.keys()[each]]["meanings"])
-		kanji_list.append(kanji)
+	else:
+		for each in jpn_dict.size():
+			kanji = Kanji.new()
+			kanji.kanji_setter(jpn_dict.keys()[each], jpn_dict[jpn_dict.keys()[each]]["readings_on"], jpn_dict[jpn_dict.keys()[each]]["readings_kun"], jpn_dict[jpn_dict.keys()[each]]["meanings"])
+			kanji_list.append(kanji)
 	pass
 	
 	
@@ -44,5 +50,9 @@ func size():
 	return kanji_list.size()
 
 func add_to_list(entry, list):
+	pass
+	
+func _empty_list():
+	emit_signal("empty_list")
 	pass
 

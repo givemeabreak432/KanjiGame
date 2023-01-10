@@ -8,8 +8,10 @@ Current TODO:
 Work on list selector. 
 -create new lists
 -delete lists
--load lists
+-load lists - DONE
 -append kanji to lists
 -remove kanji from list
+
+add error catching to list reading class
 
 SORT KANJI!

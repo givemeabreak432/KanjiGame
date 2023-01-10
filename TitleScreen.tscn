@@ -31,4 +31,5 @@ size_flags_horizontal = 4
 size_flags_vertical = 2
 custom_fonts/font = ExtResource( 2 )
 text = "Favorites"
+
 [connection signal="pressed" from="VBoxContainer/Dictionairy" to="." method="_on_Dictionairy_pressed"]

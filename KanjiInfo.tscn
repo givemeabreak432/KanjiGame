@@ -106,6 +106,7 @@ margin_right = 506.0
 margin_bottom = 325.0
 custom_fonts/font = ExtResource( 5 )
 text = "Meanings"
+
 [connection signal="pressed" from="VBoxContainer/NavigationContainer/BackButton" to="." method="_on_BackButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/NavigationContainer/LeftButton" to="." method="_on_LeftButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/NavigationContainer/RightButton" to="." method="_on_RightButton_pressed"]

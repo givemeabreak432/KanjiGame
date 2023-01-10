@@ -1,17 +1,23 @@
 extends MenuButton
+
 const path = "res://Assets/lists/"
 var popup
 var lists = []
+
+#node variables
+onready var list_creator = $ListCreator
+onready var empty_list = $EmptyList
 
 #signals
 signal select_list
 
 func _ready():
+	#connect_signals
+	connect("empty_list", self, "show_empty_list")
 	pass 
 	
 func _init():
 	read_directory()
-
 
 #possibly add functionality for sub-folders in future
 func read_directory():
@@ -26,10 +32,35 @@ func read_directory():
 				lists.append(file_name)
 				popup.add_item(file_name)
 			file_name = dir.get_next()
+	#popup has "id_pressed" signal built in, connect to custom function _on_item_pressed()
 	popup.connect("id_pressed", self, "_on_item_pressed")
 
+#remakes popup menu, to be called after creating new files
+func reload_directory():
+	popup = get_popup()
+	popup.clear()
+	popup.add_item("New")
+	popup.add_item("Delete")
+	read_directory()
+	
+func create_list():
+	list_creator.popup()
+	pass
 
-#emit signal with list name
+func del_list():
+	pass
+
+func show_empty_list():
+	empty_list.visible = true
+	pass
+#emit signal with list name. lists[ID-2] is necessary because "new' and "delete" are always ID 1 and 2
+#in the popup menu, while list array starts at first list
 func _on_item_pressed(ID):
-	emit_signal("select_list", lists[ID])
+	if ID == 0: 
+		create_list()
+		pass
+	if ID == 1:
+		del_list()
+		pass
+	emit_signal("select_list", lists[ID-2])
 	pass
