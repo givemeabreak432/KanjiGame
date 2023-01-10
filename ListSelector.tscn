@@ -24,4 +24,5 @@ margin_bottom = 8.0
 [node name="EmptyList" type="ConfirmationDialog" parent="."]
 margin_right = 200.0
 margin_bottom = 70.0
-dialog_text = "Selected List is Empty!"
+dialog_text = "Selected List is Empty!
+Loaded dictionary."

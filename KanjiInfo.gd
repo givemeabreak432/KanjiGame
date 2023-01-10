@@ -27,10 +27,11 @@ func _ready():
 	list_selector.connect("select_list", self, "load_list")
 	pass # Replace with function body.
 
-#load current list. If nothing passed in will load default list.
+#load current list. If nothing passed in will load default list (defined in List.gd)
 func load_list(list = null):
-	print(list)
+	current_page = 0
 	current_list = ListScript.new()
+	current_list.connect("empty_list", list_selector, "show_empty_popup")
 	if list != null:
 		current_list.load_dict(list)
 	else:

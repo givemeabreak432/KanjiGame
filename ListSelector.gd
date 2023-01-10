@@ -13,7 +13,6 @@ signal select_list
 
 func _ready():
 	#connect_signals
-	connect("empty_list", self, "show_empty_list")
 	pass 
 	
 func _init():
@@ -42,7 +41,8 @@ func reload_directory():
 	popup.add_item("New")
 	popup.add_item("Delete")
 	read_directory()
-	
+
+#makes "create list" menu visible
 func create_list():
 	list_creator.popup()
 	pass
@@ -50,7 +50,7 @@ func create_list():
 func del_list():
 	pass
 
-func show_empty_list():
+func show_empty_popup():
 	empty_list.visible = true
 	pass
 #emit signal with list name. lists[ID-2] is necessary because "new' and "delete" are always ID 1 and 2
@@ -59,8 +59,9 @@ func _on_item_pressed(ID):
 	if ID == 0: 
 		create_list()
 		pass
-	if ID == 1:
+	elif ID == 1:
 		del_list()
 		pass
-	emit_signal("select_list", lists[ID-2])
+	else:
+		emit_signal("select_list", lists[ID-2])
 	pass

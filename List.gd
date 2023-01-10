@@ -26,8 +26,11 @@ func load_dict(file_name = kanji_file):
 	jpn_dict = parse_json(text)
 	file.close()
 	
-	if not is_instance_valid(jpn_dict):
-		_empty_list()
+	#pop up error message and load default list
+	if not jpn_dict:
+		print("attempting to load empty list")
+		emit_signal("empty_list")
+		load_dict() #calls load_dict with default values
 	#creating kanji objects
 	else:
 		for each in jpn_dict.size():
@@ -52,7 +55,4 @@ func size():
 func add_to_list(entry, list):
 	pass
 	
-func _empty_list():
-	emit_signal("empty_list")
-	pass
 
