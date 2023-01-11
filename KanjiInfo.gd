@@ -1,15 +1,14 @@
 extends MarginContainer
 
-#class variable for list - loading list script. 
-const ListScript = preload("List.gd") # Relative path
-onready var current_list
-
 #loading kanji class
 const KanjiScript = preload("Kanji.gd") # Relative path
 onready var current_kanji
 
 #global var
 var current_page = 0
+var current_list = ""
+var current_list_keys = []
+
 #node linked var
 onready var kanji_label = $VBoxContainer/InfoContainer/KanjiTitle/KanjiLabel
 onready var on_yomi = $VBoxContainer/InfoContainer/KanjiInfo/OnYomi #line 6
@@ -22,27 +21,21 @@ onready var list_selector = $VBoxContainer/NavigationContainer/ListSelector
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	load_list()
-	
 	#connect signals
 	list_selector.connect("select_list", self, "load_list")
 	pass # Replace with function body.
 
-#load current list. If nothing passed in will load default list (defined in List.gd)
+#load the currently selected list. If non selected, defaults to full dictionary
+#takes a list nam as argument
 func load_list(list = null):
-	current_page = 0
-	current_list = ListScript.new()
-	current_list.connect("empty_list", list_selector, "show_empty_popup")
-	if list != null:
-		current_list.load_dict(list)
-	else:
-		current_list.load_dict()
-		
+	current_page = 0 #set page to 0 when loading new list.
+	current_list = List.get_list_values(list)
 	load_entry(current_page)
 	pass
 
-#reloads current page dsiplayed with entry #
+#pull kanji from current_list[curreent_kanji] 
 func load_entry(entry):
-	current_kanji = current_list.return_entry(entry)
+	current_kanji = JapaneseDictionary.get_kanji(current_page)
 	
 	kanji_label.text = current_kanji.get_kanji()
 	on_yomi.text = current_kanji.get_on_yomi(true, ", ")

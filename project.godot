@@ -13,15 +13,9 @@ _global_script_classes=[ {
 "class": "Kanji",
 "language": "GDScript",
 "path": "res://Kanji.gd"
-}, {
-"base": "Object",
-"class": "List",
-"language": "GDScript",
-"path": "res://List.gd"
 } ]
 _global_script_class_icons={
-"Kanji": "",
-"List": ""
+"Kanji": ""
 }
 
 [application]
@@ -29,6 +23,11 @@ _global_script_class_icons={
 config/name="game"
 run/main_scene="res://TitleScreen.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+JapaneseDictionary="*res://JapaneseDictionary.gd"
+List="*res://List.gd"
 
 [gui]
 
