@@ -28,6 +28,9 @@ func _init():
 	pass
 
 #reads in the list file, should be ran at script load
+#keep in mind, a dictionary in the form:
+#KEY: ARRAY OF STRINGS
+#when calling a number, make sure to change to INT!
 func load_lists():
 	var file = File.new()
 	file.open(list_file, File.READ)
@@ -57,17 +60,21 @@ func add_list(input):
 func get_list_keys():
 	return list_dict.keys()
 
-#if key exist, return value.
-#otherwise, return whole dictionary
+#returnss saved list based on key (name) provided
+#otherwise, return a list of every kanji ID, 0-list().size()
 func get_list_values(key):
 	if key != null:
-		return list_dict[key]
+		if typeof(list_dict[key]) == TYPE_STRING_ARRAY:
+			return list_dict[key]
+		else: #selected list is empty
+			emit_signal("empty_list")
+			return range(JapaneseDictionary.get_list().size())
 	else:
-		return JapaneseDictionary.get_list()
+		return range(JapaneseDictionary.get_list().size())
 	
 func return_entry(entry):
 	return kanji_list[entry]
 func size():
 	return kanji_list.size()
-func add_to_list(entry, list):
+func add_kanji_to_list(entry, list):
 	pass

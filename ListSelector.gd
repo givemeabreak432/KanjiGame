@@ -11,11 +11,12 @@ onready var empty_list = $EmptyList
 signal select_list
 
 func _ready():
-	#connect_signals
+	List.connect("empty_list", self, "show_empty_popup") 
+	populate_menu()
 	pass 
 	
 func _init():
-	populate_menu()
+	pass
 
 #Reads what files exists in directory, connecg signal
 func populate_menu():
@@ -46,11 +47,13 @@ func del_list():
 func show_empty_popup():
 	empty_list.visible = true
 	pass
+	
 #emit signal with list name. lists[ID-2] is necessary because "new' and "delete" are always ID 1 and 2
 #in the popup menu, while list array starts at first list
 func _on_item_pressed(ID):
 	if ID == 0: #create selected
 		create_list()
+		reload_directory()
 		pass
 	elif ID == 1: #del selected
 		del_list()

@@ -45,4 +45,4 @@ func load_dict(file_name = dict):
 func get_list():
 	return jpn_dict
 func get_kanji(index):
-	return jpn_dict[index]
+	return jpn_dict[int(index)]

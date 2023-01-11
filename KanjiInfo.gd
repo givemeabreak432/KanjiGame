@@ -35,7 +35,7 @@ func load_list(list = null):
 
 #pull kanji from current_list[curreent_kanji] 
 func load_entry(entry):
-	current_kanji = JapaneseDictionary.get_kanji(current_page)
+	current_kanji = JapaneseDictionary.get_kanji(current_list[current_page])
 	
 	kanji_label.text = current_kanji.get_kanji()
 	on_yomi.text = current_kanji.get_on_yomi(true, ", ")
