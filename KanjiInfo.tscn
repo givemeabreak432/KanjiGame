@@ -31,6 +31,7 @@ margin_bottom = 20.0
 text = "X"
 
 [node name="ListSelector" parent="VBoxContainer/NavigationContainer" instance=ExtResource( 2 )]
+items = [ "New", null, 0, false, false, 0, 0, null, "", false, "Delete", null, 0, false, false, 1, 0, null, "", false, "Dictionary", null, 0, false, false, 2, 0, null, "", false ]
 
 [node name="ListAddKanji" parent="VBoxContainer/NavigationContainer" instance=ExtResource( 6 )]
 

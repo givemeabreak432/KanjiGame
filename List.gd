@@ -13,7 +13,6 @@ onready var kanji
 const list_file = "res://Assets/lists/lists.txt"
 
 #variables
-var kanji_list = []
 var list_dict = {}
 
 #send signals
@@ -34,7 +33,7 @@ func _init():
 func load_lists():
 	var file = File.new()
 	file.open(list_file, File.READ)
-	
+
 	#read file
 	while not file.eof_reached():
 		var text = file.get_line()
@@ -71,10 +70,14 @@ func get_list_values(key):
 			return range(JapaneseDictionary.get_list().size())
 	else:
 		return range(JapaneseDictionary.get_list().size())
-	
-func return_entry(entry):
-	return kanji_list[entry]
-func size():
-	return kanji_list.size()
+
+
+#TODO
+#add kanji "entry number" to list
+#if entry is already in list, emit signal
+#sort list
+#write list to txt file
 func add_kanji_to_list(entry, list):
+	print(entry)
+	print(list)
 	pass

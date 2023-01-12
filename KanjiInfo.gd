@@ -16,6 +16,7 @@ onready var kun_yomi = $VBoxContainer/InfoContainer/KanjiInfo/KunYomi # line 7
 onready var meaning = $VBoxContainer/InfoContainer/KanjiInfo/Meaning # line 5
 onready var page = $VBoxContainer/NavigationContainer/Page # page counter
 onready var list_selector = $VBoxContainer/NavigationContainer/ListSelector
+onready var list_adder = $VBoxContainer/NavigationContainer/ListAddKanji
 
 
 # Called when the node enters the scene tree for the first time.
@@ -23,6 +24,7 @@ func _ready():
 	load_list()
 	#connect signals
 	list_selector.connect("select_list", self, "load_list")
+	list_adder.connect("list_add_kanji", self, "add_to_list")
 	pass # Replace with function body.
 
 #load the currently selected list. If non selected, defaults to full dictionary
@@ -43,12 +45,15 @@ func load_entry(entry):
 	meaning.text = current_kanji.get_meaning(true, ", ")
 	page.text = str(entry + 1) + "/" + str(current_list.size())
 
-func add_to_list(entry, list):
+#SIGNAL functions
+#These functions run when a signal happens
+
+#adds currently displayed kanji to list.
+func add_to_list(entry):
+	List.add_kanji_to_list(entry, current_list[current_page])
 	pass
 
 
-
-#BUTTON FUNCTIONS
 #navigate to previous kanji page
 func _on_LeftButton_pressed():
 	current_page = current_page - 1
