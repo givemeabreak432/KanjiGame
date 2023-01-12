@@ -6,11 +6,15 @@ Lists should be created as its own class, as there will be methods to add, remov
 
 Current TODO:
 Work on list selector. 
--create new lists
+-create new lists DONE
 -delete lists
 -load lists - DONE
 -append kanji to lists
 -remove kanji from list
+
+-refactor list class
+-create kanji dictionary on startup
+-loading lists is just loading different subsets of dictinary, not completely reloading it
 
 add error catching to list reading class
 
