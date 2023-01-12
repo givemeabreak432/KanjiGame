@@ -6,28 +6,24 @@ onready var existence_label = $VBoxContainer/AlreadyExists
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+
 	pass # Replace with function body.
 	
 	
 func create_list():
-	var dir = Directory.new()
-	if dir.open(path) == OK:
-		dir.list_dir_begin()
-		
-		#check for duplicate names
-		var file_name = dir.get_next()
-
-		#write file
-		if not (dir.file_exists(entry.text + ".json")):
-			var file = File.new()
-			file.open("res://Assets/lists/" + entry.text + ".json", File.WRITE)
-			file.close()
-			get_parent().reload_directory()
-			_on_CloseButton_pressed()
-		else:
-			existence_label.visible = true
+	if ":" in entry.text:
+		invalid_entry()
+	elif not entry.text in List.get_list_keys():
+		List.add_list(entry.text)
+		_on_CloseButton_pressed()
+	else:
+		existence_label.visible = true
+		existence_label.visible = ""
 			
 
+func invalid_entry():
+	existence_label.visible=true
+	existence_label.text="No special characters"
 
 #signal functions
 func _on_CloseButton_pressed():

@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://KanjiInfo.gd" type="Script" id=1]
 [ext_resource path="res://ListSelector.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/LINE_Seed_JP/App/OTF/LINESeedJP_A_OTF_Rg.otf" type="DynamicFontData" id=3]
 [ext_resource path="res://Assets/LINE_Seed_Sans_EN/App/OTF/LINESeedSans_A_Rg.otf" type="DynamicFontData" id=4]
 [ext_resource path="res://Assets/font_EN_JP.tres" type="DynamicFont" id=5]
+[ext_resource path="res://ListKanjiAdder.tscn" type="PackedScene" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 100
@@ -31,22 +32,24 @@ text = "X"
 
 [node name="ListSelector" parent="VBoxContainer/NavigationContainer" instance=ExtResource( 2 )]
 
+[node name="ListAddKanji" parent="VBoxContainer/NavigationContainer" instance=ExtResource( 6 )]
+
 [node name="LeftButton" type="Button" parent="VBoxContainer/NavigationContainer"]
-margin_left = 70.0
-margin_right = 520.0
+margin_left = 111.0
+margin_right = 541.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
 text = "Previous"
 
 [node name="Page" type="Label" parent="VBoxContainer/NavigationContainer"]
-margin_left = 524.0
+margin_left = 545.0
 margin_top = 3.0
-margin_right = 569.0
+margin_right = 590.0
 margin_bottom = 17.0
 text = "1/1000"
 
 [node name="RightButton" type="Button" parent="VBoxContainer/NavigationContainer"]
-margin_left = 573.0
+margin_left = 594.0
 margin_right = 1024.0
 margin_bottom = 20.0
 size_flags_horizontal = 3

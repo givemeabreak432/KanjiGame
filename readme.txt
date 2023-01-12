@@ -4,6 +4,12 @@ kanjiInfo screen will populate based on list of kanji provided for it. By defaul
 
 Lists should be created as its own class, as there will be methods to add, remove, check for duplicates within lists,, or check for duplicate names.
 
+Current structure:
+
+Lists are collection of Kanji in an array, with some special functions related to kanji.
+Default list is all kanji stored in an array and should be loaded in startup.
+autoload the dictionary!
+
 Current TODO:
 Work on list selector. 
 -create new lists DONE
@@ -17,5 +23,11 @@ Work on list selector.
 -loading lists is just loading different subsets of dictinary, not completely reloading it
 
 add error catching to list reading class
+
+Refacteor Lists:
+Create dictionary at start of program
+-lists are subsets of dictionary saved in lists.txt file
+-simple structure: 
+list name: kanji_1_id, kanji_2_id, kanji_3_id, ...
 
 SORT KANJI!

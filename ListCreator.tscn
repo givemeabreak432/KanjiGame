@@ -21,7 +21,7 @@ margin_bottom = -4.0
 visible = false
 margin_right = 40.0
 margin_bottom = 14.0
-text = "File Already Exists"
+text = "List Already Exists"
 align = 1
 
 [node name="Entry" type="LineEdit" parent="VBoxContainer"]
@@ -46,5 +46,6 @@ margin_right = 111.0
 margin_bottom = 20.0
 size_flags_horizontal = 6
 text = "Cancel"
+
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/CreateButton" to="." method="_on_CreateButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/CloseButton" to="." method="_on_CloseButton_pressed"]
