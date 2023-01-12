@@ -22,9 +22,15 @@ func populate_menu():
 		popup.add_item(each)
 	popup.connect("id_pressed", self, "_on_item_pressed")
 
+func reload_directory():
+	popup = get_popup()
+	popup.clear()
+	populate_menu()
+
+
 #on item pressed, we must find  kanji is being added. We already have the ID of list.
 #emit kanji_finder will send message to parent, which should have a kanji to return
 func _on_item_pressed(id):
-	emit_signal("list_add_kanji", id)
+	emit_signal("list_add_kanji", List.get_list_keys()[id])
 	#List.add_kanji_to_list()
 	pass

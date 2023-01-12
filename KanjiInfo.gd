@@ -25,6 +25,7 @@ func _ready():
 	#connect signals
 	list_selector.connect("select_list", self, "load_list")
 	list_adder.connect("list_add_kanji", self, "add_to_list")
+	List.connect("list_created", self, "_reload_directories")
 	pass # Replace with function body.
 
 #load the currently selected list. If non selected, defaults to full dictionary
@@ -49,10 +50,15 @@ func load_entry(entry):
 #These functions run when a signal happens
 
 #adds currently displayed kanji to list.
-func add_to_list(entry):
-	List.add_kanji_to_list(entry, current_list[current_page])
+func add_to_list(list):
+	List.add_kanji_to_list(list, current_list[current_page])
 	pass
 
+func _reload_directories():
+	print("reload!")
+	list_selector.reload_directory()
+	list_adder.reload_directory()
+	pass
 
 #navigate to previous kanji page
 func _on_LeftButton_pressed():
