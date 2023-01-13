@@ -10,24 +10,20 @@ Lists are collection of Kanji in an array, with some special functions related t
 Default list is all kanji stored in an array and should be loaded in startup.
 autoload the dictionary!
 
-Current TODO:
+TODO:
 Work on list selector. 
 -create new lists DONE
 -delete lists
 -load lists - DONE
--append kanji to lists
--remove kanji from list
+-append kanji to lists DONE
+-remove kanji from list - DONE
 
--refactor list class
--create kanji dictionary on startup
--loading lists is just loading different subsets of dictinary, not completely reloading it
+Kanji Dictionary Display:
+-Add different display modes:
+-Flash Card Display
+-instance "info container" to have different types of displays
+-move kanjiinfo script to dictionarydisplay and flash card display
 
-add error catching to list reading class
-
-Refacteor Lists:
-Create dictionary at start of program
--lists are subsets of dictionary saved in lists.txt file
--simple structure: 
-list name: kanji_1_id, kanji_2_id, kanji_3_id, ...
-
-SORT KANJI!
+kanji search function
+-Dynamically create sublist based on given critiera
+-meaning, onyomi, kunyomi, etc

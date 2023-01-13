@@ -4,6 +4,8 @@ extends MenuButton
 const path = "res://Assets/lists/"
 var popup
 
+onready var notice_box = $NoticeBox
+
 signal list_add_kanji
 
 # Called when the node enters the scene tree for the first time.
@@ -12,6 +14,7 @@ func _ready():
 
 func _init():
 	List.connect("empty_list", self, "show_empty_popup") 
+	List.connect("already_in_list", self, "already_added")
 	populate_menu()
 
 #Reads what files exists in directory, connecg signal
@@ -27,6 +30,10 @@ func reload_directory():
 	popup.clear()
 	populate_menu()
 
+#runs when kanji added to list already exists in said list.
+func already_added():
+	notice_box.dialog_text = "Kanji Already Exists in List!"
+	notice_box.visible = true
 
 #on item pressed, we must find  kanji is being added. We already have the ID of list.
 #emit kanji_finder will send message to parent, which should have a kanji to return

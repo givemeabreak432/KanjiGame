@@ -4,10 +4,8 @@ const path = "res://Assets/lists/"
 onready var entry = $VBoxContainer/Entry
 onready var existence_label = $VBoxContainer/AlreadyExists
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-
-	pass # Replace with function body.
+	pass 
 	
 	
 func create_list():
@@ -24,6 +22,7 @@ func create_list():
 func invalid_entry():
 	existence_label.visible=true
 	existence_label.text="No special characters"
+	
 
 #signal functions
 func _on_CloseButton_pressed():

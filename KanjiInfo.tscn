@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://KanjiInfo.gd" type="Script" id=1]
 [ext_resource path="res://ListSelector.tscn" type="PackedScene" id=2]
@@ -6,6 +6,20 @@
 [ext_resource path="res://Assets/LINE_Seed_Sans_EN/App/OTF/LINESeedSans_A_Rg.otf" type="DynamicFontData" id=4]
 [ext_resource path="res://Assets/font_EN_JP.tres" type="DynamicFont" id=5]
 [ext_resource path="res://ListKanjiAdder.tscn" type="PackedScene" id=6]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=6]
+
+[sub_resource type="Theme" id=2]
+Button/styles/focus = SubResource( 4 )
+Button/styles/hover = SubResource( 5 )
+Button/styles/normal = SubResource( 3 )
+Button/styles/pressed = SubResource( 6 )
 
 [sub_resource type="DynamicFont" id=1]
 size = 100
@@ -35,42 +49,72 @@ items = [ "New", null, 0, false, false, 0, 0, null, "", false, "Delete", null, 0
 
 [node name="ListAddKanji" parent="VBoxContainer/NavigationContainer" instance=ExtResource( 6 )]
 
-[node name="LeftButton" type="Button" parent="VBoxContainer/NavigationContainer"]
+[node name="RemoveKanji" type="Button" parent="VBoxContainer/NavigationContainer"]
 margin_left = 111.0
-margin_right = 541.0
+margin_right = 163.0
+margin_bottom = 20.0
+theme = SubResource( 2 )
+text = "Remove"
+
+[node name="RemoveKanjiPopup" type="AcceptDialog" parent="VBoxContainer/NavigationContainer/RemoveKanji"]
+margin_left = -163.0
+margin_right = -60.004
+margin_bottom = 52.0
+size_flags_horizontal = 12
+size_flags_vertical = 12
+dialog_text = "Kanji Removed!"
+
+[node name="LeftButton" type="Button" parent="VBoxContainer/NavigationContainer"]
+margin_left = 167.0
+margin_right = 569.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
 text = "Previous"
 
 [node name="Page" type="Label" parent="VBoxContainer/NavigationContainer"]
-margin_left = 545.0
+margin_left = 573.0
 margin_top = 3.0
-margin_right = 590.0
+margin_right = 618.0
 margin_bottom = 17.0
 text = "1/1000"
 
 [node name="RightButton" type="Button" parent="VBoxContainer/NavigationContainer"]
-margin_left = 594.0
+margin_left = 622.0
 margin_right = 1024.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
 text = "Next"
 
-[node name="InfoContainer" type="HSplitContainer" parent="VBoxContainer"]
+[node name="DisplayMode" type="OptionButton" parent="VBoxContainer"]
+margin_left = 948.0
 margin_top = 24.0
+margin_right = 1024.0
+margin_bottom = 44.0
+size_flags_horizontal = 8
+text = "Display"
+items = [ "Dictionary", null, false, 0, null, "Flash Cards", null, false, 1, null ]
+selected = 0
+
+[node name="DictionaryDisplay" type="Container" parent="VBoxContainer"]
+margin_top = 48.0
+margin_right = 1024.0
+margin_bottom = 48.0
+
+[node name="InfoContainer" type="HSplitContainer" parent="VBoxContainer/DictionaryDisplay"]
+margin_top = 48.0
 margin_right = 1024.0
 margin_bottom = 600.0
 size_flags_vertical = 3
 
-[node name="KanjiTitle" type="VBoxContainer" parent="VBoxContainer/InfoContainer"]
+[node name="KanjiTitle" type="VBoxContainer" parent="VBoxContainer/DictionaryDisplay/InfoContainer"]
 margin_right = 506.0
-margin_bottom = 576.0
+margin_bottom = 552.0
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="KanjiLabel" type="Label" parent="VBoxContainer/InfoContainer/KanjiTitle"]
+[node name="KanjiLabel" type="Label" parent="VBoxContainer/DictionaryDisplay/InfoContainer/KanjiTitle"]
 margin_right = 506.0
-margin_bottom = 572.0
+margin_bottom = 548.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 1 )
@@ -78,39 +122,45 @@ text = "KANJI"
 align = 1
 valign = 1
 
-[node name="KanjiDrawn" type="TextureRect" parent="VBoxContainer/InfoContainer/KanjiTitle"]
-margin_top = 576.0
+[node name="KanjiDrawn" type="TextureRect" parent="VBoxContainer/DictionaryDisplay/InfoContainer/KanjiTitle"]
+margin_top = 552.0
 margin_right = 506.0
-margin_bottom = 576.0
+margin_bottom = 552.0
 
-[node name="KanjiInfo" type="VBoxContainer" parent="VBoxContainer/InfoContainer"]
+[node name="KanjiInfo" type="VBoxContainer" parent="VBoxContainer/DictionaryDisplay/InfoContainer"]
 margin_left = 518.0
 margin_right = 1024.0
-margin_bottom = 576.0
+margin_bottom = 552.0
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="OnYomi" type="Label" parent="VBoxContainer/InfoContainer/KanjiInfo"]
-margin_top = 251.0
+[node name="OnYomi" type="Label" parent="VBoxContainer/DictionaryDisplay/InfoContainer/KanjiInfo"]
+margin_top = 239.0
 margin_right = 506.0
-margin_bottom = 273.0
+margin_bottom = 261.0
 custom_fonts/font = ExtResource( 5 )
 text = "On Reading"
 
-[node name="KunYomi" type="Label" parent="VBoxContainer/InfoContainer/KanjiInfo"]
-margin_top = 277.0
+[node name="KunYomi" type="Label" parent="VBoxContainer/DictionaryDisplay/InfoContainer/KanjiInfo"]
+margin_top = 265.0
 margin_right = 506.0
-margin_bottom = 299.0
+margin_bottom = 287.0
 custom_fonts/font = ExtResource( 5 )
 text = "Kun Readings"
 
-[node name="Meaning" type="Label" parent="VBoxContainer/InfoContainer/KanjiInfo"]
-margin_top = 303.0
+[node name="Meaning" type="Label" parent="VBoxContainer/DictionaryDisplay/InfoContainer/KanjiInfo"]
+margin_top = 291.0
 margin_right = 506.0
-margin_bottom = 325.0
+margin_bottom = 313.0
 custom_fonts/font = ExtResource( 5 )
 text = "Meanings"
 
+[node name="FlashCardDisplay" type="Container" parent="VBoxContainer"]
+margin_top = 52.0
+margin_right = 1024.0
+margin_bottom = 52.0
+
 [connection signal="pressed" from="VBoxContainer/NavigationContainer/BackButton" to="." method="_on_BackButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/NavigationContainer/RemoveKanji" to="." method="_on_RemoveKanji_pressed"]
 [connection signal="pressed" from="VBoxContainer/NavigationContainer/LeftButton" to="." method="_on_LeftButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/NavigationContainer/RightButton" to="." method="_on_RightButton_pressed"]

@@ -22,6 +22,7 @@ var config = ConfigFile.new()
 #send signals
 signal empty_list
 signal list_created #whenever lists are updated, list_created is emitte to update relevent menus
+signal already_in_list
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -40,21 +41,28 @@ func load_lists():
 	
 #save newly created list as key value pair to lists.txt
 #also adds list as new value
-#TODO FIX
 func add_list(input):
-	config.set_value("lists", input, PoolStringArray())
+	config.set_value("lists", input, Array())
 	config.save(config_file)
+	emit_signal("list_created")
 	pass
 
 func get_list_keys():
 	return config.get_section_keys("lists")
+	
 
-#returnss saved list based on key (name) provided
+#check if list in config file is empty
+#if list does not exist, will also return false
+func is_empty(list):
+	if list != null:return config.get_value("lists", list).size() == 0
+	else: return false
+
+#returns saved list based on key (name) provided
 #otherwise, return a list of every kanji ID, 0-list().size()
-func get_list_values(key):
-	if key != null:
-		if config.get_value("lists", key).size() != 0:
-			return config.get_value("lists", key)
+func get_list_values(list):
+	if list != null:
+		if not is_empty(list):
+			return config.get_value("lists", list)
 		else: #selected list is empty
 			emit_signal("empty_list")
 			return range(JapaneseDictionary.get_list().size())
@@ -68,10 +76,20 @@ func add_kanji_to_list(list, entry):
 	
 	#Update stored dictionary
 	var list_entries = config.get_value("lists", list)
-	list_entries.append(entry)
+	if int(entry) in list_entries:
+		emit_signal("already_in_list")
+	else:
+		list_entries.append(int(entry))
+		list_entries.sort()
+		#save list_entries to config file to config file
+		
+		config.set_value("lists", list, list_entries)
+		config.save(config_file)
 	
-	#save list_entries to config file to config file
-	
-	config.set_value("lists", list, list_entries)
-	config.save(config_file)
-	pass
+func remove_kanji_from_list(list, entry):
+	print(entry)
+	var list_entries = config.get_value("lists", list)
+	if entry in list_entries:
+		list_entries.erase(int(entry))
+		config.set_value("lists", list, list_entries)
+		config.save(config_file)
