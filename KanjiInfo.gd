@@ -9,11 +9,13 @@ var current_page = 0
 var current_list = []
 var current_list_name = ""
 
+signal change_kanji
 #node linked var
-onready var kanji_label = $VBoxContainer/DictionaryDisplay/InfoContainer/KanjiTitle/KanjiLabel
-onready var on_yomi = $VBoxContainer/DictionaryDisplay/InfoContainer/KanjiInfo/OnYomi #line 6
-onready var kun_yomi = $VBoxContainer/DictionaryDisplay/InfoContainer/KanjiInfo/KunYomi # line 7
-onready var meaning = $VBoxContainer/DictionaryDisplay/InfoContainer/KanjiInfo/Meaning # line 5
+
+#onready var kanji_label = $VBoxContainer/DictionaryDisplay/InfoContainer/KanjiTitle/KanjiLabel
+#onready var on_yomi = $VBoxContainer/DictionaryDisplay/InfoContainer/KanjiInfo/OnYomi #line 6
+#onready var kun_yomi = $VBoxContainer/DictionaryDisplay/InfoContainer/KanjiInfo/KunYomi # line 7
+#onready var meaning = $VBoxContainer/DictionaryDisplay/InfoContainer/KanjiInfo/Meaning # line 5
 onready var page = $VBoxContainer/NavigationContainer/Page # page counter
 onready var list_selector = $VBoxContainer/NavigationContainer/ListSelector
 onready var list_adder = $VBoxContainer/NavigationContainer/ListAddKanji
@@ -42,10 +44,10 @@ func load_list(list = null):
 func load_entry(entry):
 	current_kanji = JapaneseDictionary.get_kanji(current_list[current_page])
 	
-	kanji_label.text = current_kanji.get_kanji()
-	on_yomi.text = current_kanji.get_on_yomi(true, ", ")
-	kun_yomi.text = current_kanji.get_kun_yomi(true, ", ")
-	meaning.text = current_kanji.get_meaning(true, ", ")
+	#kanji_label.text = current_kanji.get_kanji()
+	#on_yomi.text = current_kanji.get_on_yomi(true, ", ")
+	#kun_yomi.text = current_kanji.get_kun_yomi(true, ", ")
+	#meaning.text = current_kanji.get_meaning(true, ", ")
 	page.text = str(entry + 1) + "/" + str(current_list.size())
 
 
@@ -70,7 +72,8 @@ func _on_LeftButton_pressed():
 	current_page = current_page - 1
 	if current_page < 0:
 		current_page = current_list.size() - 1		
-	load_entry(current_page)
+	page.text = str(current_page + 1) + "/" + str(current_list.size())
+	emit_signal("change_kanji", current_page)
 	pass # Replace with function body.
 
 #navigate to next kanji page
@@ -78,8 +81,8 @@ func _on_RightButton_pressed():
 	current_page = current_page + 1
 	if current_page == current_list.size():
 		current_page = 0
-	load_entry(current_page)
-	
+	page.text = str(current_page + 1) + "/" + str(current_list.size())
+	emit_signal("change_kanji", current_page)
 
 
 func _on_BackButton_pressed():

@@ -27,3 +27,10 @@ Kanji Dictionary Display:
 kanji search function
 -Dynamically create sublist based on given critiera
 -meaning, onyomi, kunyomi, etc
+
+kanjiinfo script
+-this script has evolved to hold information regarding current kanji, list, display etc
+-this will be passed to display scripts nested inside
+
+dictionarydisplay script
+-getparent.getparent call is awkward. try to fix.

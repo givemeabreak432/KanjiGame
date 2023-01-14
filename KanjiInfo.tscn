@@ -1,10 +1,8 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://KanjiInfo.gd" type="Script" id=1]
 [ext_resource path="res://ListSelector.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Assets/LINE_Seed_JP/App/OTF/LINESeedJP_A_OTF_Rg.otf" type="DynamicFontData" id=3]
-[ext_resource path="res://Assets/LINE_Seed_Sans_EN/App/OTF/LINESeedSans_A_Rg.otf" type="DynamicFontData" id=4]
-[ext_resource path="res://Assets/font_EN_JP.tres" type="DynamicFont" id=5]
+[ext_resource path="res://DictionaryDisplay.tscn" type="PackedScene" id=3]
 [ext_resource path="res://ListKanjiAdder.tscn" type="PackedScene" id=6]
 
 [sub_resource type="StyleBoxEmpty" id=4]
@@ -20,11 +18,6 @@ Button/styles/focus = SubResource( 4 )
 Button/styles/hover = SubResource( 5 )
 Button/styles/normal = SubResource( 3 )
 Button/styles/pressed = SubResource( 6 )
-
-[sub_resource type="DynamicFont" id=1]
-size = 100
-font_data = ExtResource( 4 )
-fallback/0 = ExtResource( 3 )
 
 [node name="KanjiInfo" type="MarginContainer"]
 anchor_right = 1.0
@@ -86,74 +79,16 @@ size_flags_horizontal = 3
 text = "Next"
 
 [node name="DisplayMode" type="OptionButton" parent="VBoxContainer"]
-margin_left = 948.0
+margin_left = 930.0
 margin_top = 24.0
 margin_right = 1024.0
 margin_bottom = 44.0
 size_flags_horizontal = 8
-text = "Display"
+text = "Dictionary"
 items = [ "Dictionary", null, false, 0, null, "Flash Cards", null, false, 1, null ]
 selected = 0
 
-[node name="DictionaryDisplay" type="Container" parent="VBoxContainer"]
-margin_top = 48.0
-margin_right = 1024.0
-margin_bottom = 48.0
-
-[node name="InfoContainer" type="HSplitContainer" parent="VBoxContainer/DictionaryDisplay"]
-margin_top = 48.0
-margin_right = 1024.0
-margin_bottom = 600.0
-size_flags_vertical = 3
-
-[node name="KanjiTitle" type="VBoxContainer" parent="VBoxContainer/DictionaryDisplay/InfoContainer"]
-margin_right = 506.0
-margin_bottom = 552.0
-size_flags_horizontal = 3
-alignment = 1
-
-[node name="KanjiLabel" type="Label" parent="VBoxContainer/DictionaryDisplay/InfoContainer/KanjiTitle"]
-margin_right = 506.0
-margin_bottom = 548.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_fonts/font = SubResource( 1 )
-text = "KANJI"
-align = 1
-valign = 1
-
-[node name="KanjiDrawn" type="TextureRect" parent="VBoxContainer/DictionaryDisplay/InfoContainer/KanjiTitle"]
-margin_top = 552.0
-margin_right = 506.0
-margin_bottom = 552.0
-
-[node name="KanjiInfo" type="VBoxContainer" parent="VBoxContainer/DictionaryDisplay/InfoContainer"]
-margin_left = 518.0
-margin_right = 1024.0
-margin_bottom = 552.0
-size_flags_horizontal = 3
-alignment = 1
-
-[node name="OnYomi" type="Label" parent="VBoxContainer/DictionaryDisplay/InfoContainer/KanjiInfo"]
-margin_top = 239.0
-margin_right = 506.0
-margin_bottom = 261.0
-custom_fonts/font = ExtResource( 5 )
-text = "On Reading"
-
-[node name="KunYomi" type="Label" parent="VBoxContainer/DictionaryDisplay/InfoContainer/KanjiInfo"]
-margin_top = 265.0
-margin_right = 506.0
-margin_bottom = 287.0
-custom_fonts/font = ExtResource( 5 )
-text = "Kun Readings"
-
-[node name="Meaning" type="Label" parent="VBoxContainer/DictionaryDisplay/InfoContainer/KanjiInfo"]
-margin_top = 291.0
-margin_right = 506.0
-margin_bottom = 313.0
-custom_fonts/font = ExtResource( 5 )
-text = "Meanings"
+[node name="DictionaryDisplay" parent="VBoxContainer" instance=ExtResource( 3 )]
 
 [node name="FlashCardDisplay" type="Container" parent="VBoxContainer"]
 margin_top = 52.0

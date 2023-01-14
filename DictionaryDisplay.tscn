@@ -1,0 +1,72 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Assets/font_EN_JP.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Assets/LINE_Seed_JP/App/OTF/LINESeedJP_A_OTF_Rg.otf" type="DynamicFontData" id=2]
+[ext_resource path="res://Assets/LINE_Seed_Sans_EN/App/OTF/LINESeedSans_A_Rg.otf" type="DynamicFontData" id=3]
+[ext_resource path="res://DictionaryDisplay.gd" type="Script" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 100
+font_data = ExtResource( 3 )
+fallback/0 = ExtResource( 2 )
+
+[node name="DictionaryDisplay" type="Container"]
+margin_top = 48.0
+margin_right = 1024.0
+margin_bottom = 48.0
+script = ExtResource( 4 )
+
+[node name="InfoContainer" type="HSplitContainer" parent="."]
+margin_top = 48.0
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_vertical = 3
+
+[node name="KanjiTitle" type="VBoxContainer" parent="InfoContainer"]
+margin_right = 506.0
+margin_bottom = 552.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="KanjiLabel" type="Label" parent="InfoContainer/KanjiTitle"]
+margin_right = 506.0
+margin_bottom = 548.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 1 )
+text = "KANJI"
+align = 1
+valign = 1
+
+[node name="KanjiDrawn" type="TextureRect" parent="InfoContainer/KanjiTitle"]
+margin_top = 552.0
+margin_right = 506.0
+margin_bottom = 552.0
+
+[node name="KanjiInfo" type="VBoxContainer" parent="InfoContainer"]
+margin_left = 518.0
+margin_right = 1024.0
+margin_bottom = 552.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="OnYomi" type="Label" parent="InfoContainer/KanjiInfo"]
+margin_top = 239.0
+margin_right = 506.0
+margin_bottom = 261.0
+custom_fonts/font = ExtResource( 1 )
+text = "On Reading"
+
+[node name="KunYomi" type="Label" parent="InfoContainer/KanjiInfo"]
+margin_top = 265.0
+margin_right = 506.0
+margin_bottom = 287.0
+custom_fonts/font = ExtResource( 1 )
+text = "Kun Readings"
+
+[node name="Meaning" type="Label" parent="InfoContainer/KanjiInfo"]
+margin_top = 291.0
+margin_right = 506.0
+margin_bottom = 313.0
+custom_fonts/font = ExtResource( 1 )
+text = "Meanings"
