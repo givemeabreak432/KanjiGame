@@ -5,17 +5,17 @@
 
 extends Node
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
+onready var list_selector = $Container/Options/Options/ListSelection
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	
+	for each in List.get_list_keys():
+		list_selector.add_item(each)
+	pass 
 
 
 func _on_Begin_pressed():
+	QuizSettings.quiz_list = List.get_list_values(list_selector.text)
 	get_tree().change_scene("res://Game/Quiz/Quiz.tscn")
-	pass # Replace with function body.
+	pass 

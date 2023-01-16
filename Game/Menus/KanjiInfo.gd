@@ -76,7 +76,7 @@ func _on_RightButton_pressed():
 
 
 func _on_BackButton_pressed():
-	get_tree().change_scene("res://TitleScreen.tscn")
+	get_tree().change_scene("res://Game/Menus/TitleScreen.tscn")
 
 
 func _on_RemoveKanji_pressed():

@@ -13,9 +13,9 @@ margin_right = 1024.0
 margin_bottom = 600.0
 
 [node name="Dictionairy" type="Button" parent="VBoxContainer"]
-margin_left = 451.0
-margin_top = 270.0
-margin_right = 572.0
+margin_left = 437.0
+margin_top = 265.0
+margin_right = 586.0
 margin_bottom = 298.0
 size_flags_horizontal = 4
 size_flags_vertical = 14
@@ -23,10 +23,10 @@ custom_fonts/font = ExtResource( 2 )
 text = "Full Dictionary"
 
 [node name="Favorites" type="Button" parent="VBoxContainer"]
-margin_left = 489.0
+margin_left = 484.0
 margin_top = 302.0
-margin_right = 535.0
-margin_bottom = 330.0
+margin_right = 540.0
+margin_bottom = 335.0
 size_flags_horizontal = 4
 size_flags_vertical = 2
 custom_fonts/font = ExtResource( 2 )

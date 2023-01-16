@@ -16,7 +16,6 @@ onready var kanji
 const config_file = "res://Assets/lists/lists.cfg"
 
 #variables
-var list_dict = {} #this stores the doc file in the form of key = dic name: value = string array of entry values
 var config = ConfigFile.new()
 
 #send signals
@@ -60,7 +59,7 @@ func is_empty(list):
 #returns saved list based on key (name) provided
 #otherwise, return a list of every kanji ID, 0-list().size()
 func get_list_values(list):
-	if list != null:
+	if list != null and list in get_list_keys():
 		if not is_empty(list):
 			return config.get_value("lists", list)
 		else: #selected list is empty

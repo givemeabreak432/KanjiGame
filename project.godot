@@ -28,6 +28,7 @@ config/icon="res://Assets/icon.png"
 
 JapaneseDictionary="*res://Game/Project/JapaneseDictionary.gd"
 List="*res://Game/Project/List.gd"
+QuizSettings="*res://Game/Quiz/QuizSettings.gd"
 
 [gui]
 

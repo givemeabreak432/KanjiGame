@@ -16,17 +16,17 @@ margin_bottom = 598.0
 alignment = 1
 
 [node name="QuizLabel" type="Label" parent="Container"]
-margin_top = 230.0
+margin_top = 221.0
 margin_right = 1025.0
-margin_bottom = 257.0
+margin_bottom = 248.0
 custom_fonts/font = ExtResource( 1 )
 text = "Quiz Settings"
 align = 1
 
 [node name="Options" type="HSplitContainer" parent="Container"]
-margin_top = 261.0
+margin_top = 252.0
 margin_right = 1025.0
-margin_bottom = 331.0
+margin_bottom = 322.0
 
 [node name="Labels" type="VBoxContainer" parent="Container/Options"]
 margin_right = 506.0
@@ -79,11 +79,16 @@ selected = 0
 
 [node name="Begin" type="Button" parent="Container"]
 margin_left = 456.0
-margin_top = 335.0
+margin_top = 326.0
 margin_right = 569.0
-margin_bottom = 368.0
+margin_bottom = 359.0
 size_flags_horizontal = 4
 custom_fonts/font = ExtResource( 1 )
 text = "Begin Quiz"
+
+[node name="ErrorLabel" type="Label" parent="Container"]
+margin_top = 363.0
+margin_right = 1025.0
+margin_bottom = 377.0
 
 [connection signal="pressed" from="Container/Begin" to="." method="_on_Begin_pressed"]

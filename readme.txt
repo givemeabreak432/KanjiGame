@@ -25,6 +25,13 @@ kanji search function
 -currently only searches through meaning
 -possibly romaji search for on/kun
 
+Quiz function-
+-QuizSettings holds quiz settings set in QuizLoader. 
+-Extrapolate on QuizLoader settings available 
+-Add error catching for lists of length 0
+-QuizLength function, should always be less than length of list.
+-add quiz complete error states
+
 kanjiinfo script
 -this script has evolved to hold information regarding current kanji, list, display etc
 -this will be passed to display scripts nested inside

@@ -18,20 +18,26 @@ script = ExtResource( 3 )
 margin_right = 1023.0
 margin_bottom = 601.0
 
-[node name="NavigationControl" type="HBoxContainer" parent="VBoxContainer"]
+[node name="Correct" type="Label" parent="VBoxContainer"]
 margin_right = 1023.0
+margin_bottom = 14.0
+
+[node name="NavigationControl" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 18.0
+margin_right = 1023.0
+margin_bottom = 18.0
 
 [node name="QuizItem" type="Label" parent="VBoxContainer"]
-margin_top = 112.0
+margin_top = 125.0
 margin_right = 1023.0
-margin_bottom = 192.0
+margin_bottom = 205.0
 size_flags_vertical = 6
 custom_fonts/font = SubResource( 1 )
 text = "Kanji"
 align = 1
 
 [node name="QuizOptionsBox" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 304.0
+margin_top = 313.0
 margin_right = 1023.0
 margin_bottom = 601.0
 size_flags_vertical = 3
