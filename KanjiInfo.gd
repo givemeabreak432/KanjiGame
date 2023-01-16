@@ -32,12 +32,17 @@ func _ready():
 #additionally, when load list is called, setes page number to 0 (and updates text)
 #updates current_list_name if current_list is not null
 #finally emits a signal to update displayed kanji.
-func load_list(list = null):
+#takes 2 parameters: The list, and whether list was searched.
+func load_list(list = null, searched = false):
 	current_page = 0 #set page to 0 when loading new list.
-	current_list = List.get_list_values(list)
-	page.text = str(current_page + 1) + "/" + str(current_list.size())
-	if List.is_empty(list): current_list_name = null
-	else: current_list_name = list
+	if not searched:
+		current_list = List.get_list_values(list)
+		page.text = str(current_page + 1) + "/" + str(current_list.size())
+		if List.is_empty(list): current_list_name = null
+		else: current_list_name = list
+	else:
+		current_list = list
+		page.text = str(current_page + 1) + "/" + str(current_list.size())
 	emit_signal("change_kanji", current_list[current_page])
 
 #*********************************#
@@ -93,3 +98,9 @@ func _on_DisplayMode_item_selected(index):
 		dictionary_display.visible = false
 		flash_card_display.visible = true
 		
+
+#search function. Should create a custom list that hits all searches. 
+#Should search onyomi, kunyomi, meanings
+func _on_Search_text_entered(new_text):
+	load_list(JapaneseDictionary.search(new_text), true)
+	pass # Replace with function body.

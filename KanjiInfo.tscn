@@ -18,22 +18,25 @@ margin_bottom = 600.0
 
 [node name="NavigationContainer" type="HBoxContainer" parent="VBoxContainer"]
 margin_right = 1024.0
-margin_bottom = 20.0
+margin_bottom = 24.0
+size_flags_vertical = 0
 
 [node name="BackButton" type="Button" parent="VBoxContainer/NavigationContainer"]
 margin_right = 20.0
-margin_bottom = 20.0
+margin_bottom = 24.0
 text = "X"
 
 [node name="ListSelector" parent="VBoxContainer/NavigationContainer" instance=ExtResource( 2 )]
+margin_bottom = 24.0
 items = [ "New", null, 0, false, false, 0, 0, null, "", false, "Delete", null, 0, false, false, 1, 0, null, "", false, "Dictionary", null, 0, false, false, 2, 0, null, "", false ]
 
 [node name="ListAddKanji" parent="VBoxContainer/NavigationContainer" instance=ExtResource( 6 )]
+margin_bottom = 24.0
 
 [node name="RemoveKanji" type="Button" parent="VBoxContainer/NavigationContainer"]
 margin_left = 111.0
 margin_right = 163.0
-margin_bottom = 20.0
+margin_bottom = 24.0
 theme = ExtResource( 5 )
 text = "Remove"
 
@@ -47,42 +50,61 @@ dialog_text = "Kanji Removed!"
 
 [node name="LeftButton" type="Button" parent="VBoxContainer/NavigationContainer"]
 margin_left = 167.0
-margin_right = 569.0
-margin_bottom = 20.0
+margin_right = 538.0
+margin_bottom = 24.0
 size_flags_horizontal = 3
 text = "Previous"
 
 [node name="Page" type="Label" parent="VBoxContainer/NavigationContainer"]
-margin_left = 573.0
-margin_top = 3.0
-margin_right = 618.0
-margin_bottom = 17.0
+margin_left = 542.0
+margin_top = 5.0
+margin_right = 587.0
+margin_bottom = 19.0
 text = "1/1000"
 
 [node name="RightButton" type="Button" parent="VBoxContainer/NavigationContainer"]
-margin_left = 622.0
-margin_right = 1024.0
-margin_bottom = 20.0
+margin_left = 591.0
+margin_right = 962.0
+margin_bottom = 24.0
 size_flags_horizontal = 3
 text = "Next"
 
+[node name="Search" type="LineEdit" parent="VBoxContainer/NavigationContainer"]
+margin_left = 966.0
+margin_right = 1024.0
+margin_bottom = 24.0
+text = "search"
+
 [node name="DisplayMode" type="OptionButton" parent="VBoxContainer"]
 margin_left = 930.0
-margin_top = 24.0
+margin_top = 28.0
 margin_right = 1024.0
-margin_bottom = 44.0
+margin_bottom = 48.0
 size_flags_horizontal = 8
+size_flags_vertical = 0
 text = "Dictionary"
 items = [ "Dictionary", null, false, 0, null, "Flash Cards", null, false, 1, null ]
 selected = 0
 
 [node name="DictionaryDisplay" parent="VBoxContainer" instance=ExtResource( 3 )]
+margin_top = 52.0
+margin_right = 0.0
+margin_bottom = 52.0
+grow_horizontal = 0
+size_flags_horizontal = 0
+size_flags_vertical = 0
 
 [node name="FlashCardDisplay" parent="VBoxContainer" instance=ExtResource( 4 )]
 visible = false
+margin_top = 48.0
+margin_right = 0.0
+margin_bottom = 48.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
 
 [connection signal="pressed" from="VBoxContainer/NavigationContainer/BackButton" to="." method="_on_BackButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/NavigationContainer/RemoveKanji" to="." method="_on_RemoveKanji_pressed"]
 [connection signal="pressed" from="VBoxContainer/NavigationContainer/LeftButton" to="." method="_on_LeftButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/NavigationContainer/RightButton" to="." method="_on_RightButton_pressed"]
+[connection signal="text_entered" from="VBoxContainer/NavigationContainer/Search" to="." method="_on_Search_text_entered"]
 [connection signal="item_selected" from="VBoxContainer/DisplayMode" to="." method="_on_DisplayMode_item_selected"]

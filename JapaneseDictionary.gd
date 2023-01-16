@@ -1,6 +1,6 @@
 #JapaneseDictionary.gd should be in AutoLoad #1. 
 #At startup, it reads in the provided dictionary file
-
+#jpn dict is an array of kanji
 extends Node
 
 #constants
@@ -40,6 +40,15 @@ func load_dict(file_name = dict):
 			kanji.kanji_setter(jpn_json.keys()[each], jpn_json[jpn_json.keys()[each]]["readings_on"], jpn_json[jpn_json.keys()[each]]["readings_kun"], jpn_json[jpn_json.keys()[each]]["meanings"])
 			jpn_dict.append(kanji)
 	pass
+
+#search throuhgh dictionary for relevent kanji based on kun, on, or meaning
+#returns a list of indexes
+func search(text):
+	var index_list = []
+	for i in jpn_dict.size():
+		if text in jpn_dict[i].get_meaning(true).to_lower():
+			index_list.append(i)
+	return index_list
 
 #get_list gets a sub-array of jpn_dict based on IDs
 func get_list():

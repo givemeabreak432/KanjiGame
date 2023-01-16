@@ -14,6 +14,8 @@ fallback/0 = ExtResource( 2 )
 margin_top = 52.0
 margin_right = 1024.0
 margin_bottom = 52.0
+size_flags_horizontal = 7
+size_flags_vertical = 7
 script = ExtResource( 4 )
 
 [node name="HSplitContainer" type="HSplitContainer" parent="."]
@@ -59,7 +61,6 @@ margin_bottom = 232.0
 size_flags_horizontal = 2
 custom_fonts/font = ExtResource( 1 )
 text = "On Reading"
-align = 1
 
 [node name="KunYomi" type="Label" parent="HSplitContainer/KanjiInfo"]
 margin_top = 236.0
@@ -68,7 +69,6 @@ margin_bottom = 258.0
 size_flags_horizontal = 2
 custom_fonts/font = ExtResource( 1 )
 text = "Kun Readings"
-align = 1
 
 [node name="Meaning" type="Label" parent="HSplitContainer/KanjiInfo"]
 margin_top = 262.0
@@ -77,6 +77,5 @@ margin_bottom = 284.0
 size_flags_horizontal = 2
 custom_fonts/font = ExtResource( 1 )
 text = "Meanings"
-align = 1
 
 [connection signal="gui_input" from="HSplitContainer" to="." method="_on_HSplitContainer_gui_input"]

@@ -11,16 +11,18 @@ font_data = ExtResource( 3 )
 fallback/0 = ExtResource( 2 )
 
 [node name="DictionaryDisplay" type="Container"]
-margin_top = 48.0
 margin_right = 1024.0
-margin_bottom = 48.0
+margin_bottom = 597.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
 script = ExtResource( 4 )
 
 [node name="InfoContainer" type="HSplitContainer" parent="."]
 margin_top = 48.0
 margin_right = 1024.0
 margin_bottom = 600.0
-size_flags_vertical = 3
+size_flags_horizontal = 0
+size_flags_vertical = 0
 
 [node name="KanjiTitle" type="VBoxContainer" parent="InfoContainer"]
 margin_right = 506.0
@@ -35,7 +37,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 1 )
 text = "KANJI"
-align = 1
+align = 2
 valign = 1
 
 [node name="KanjiDrawn" type="TextureRect" parent="InfoContainer/KanjiTitle"]
