@@ -1,9 +1,17 @@
-[gd_resource type="DynamicFont" load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Assets/LINE_Seed_Sans_EN/App/OTF/LINESeedSans_A_Rg.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/LINE_Seed_JP/App/OTF/LINESeedJP_A_OTF_Rg.otf" type="DynamicFontData" id=2]
 
-[resource]
-size = 20
+[sub_resource type="DynamicFont" id=1]
+size = 30
 font_data = ExtResource( 1 )
 fallback/0 = ExtResource( 2 )
+
+[node name="QuizOption" type="Button"]
+margin_right = 1022.0
+margin_bottom = 596.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 1 )
+text = "Option 1"

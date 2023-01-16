@@ -34,7 +34,7 @@ func get_meaning(string = false, del = ""):
 	if string:
 		return arr_to_string(meaning, del)
 	return meaning
-	
+
 #simple arr to string method
 func arr_to_string(arr, var del = ""):
 	var out = ""

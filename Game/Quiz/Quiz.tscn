@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/LINE_Seed_Sans_EN/App/OTF/LINESeedSans_A_Rg.otf" type="DynamicFontData" id=1]
+[ext_resource path="res://Assets/LINE_Seed_JP/App/OTF/LINESeedJP_A_OTF_Rg.otf" type="DynamicFontData" id=2]
+[ext_resource path="res://Game/Quiz/Quiz.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 60
+font_data = ExtResource( 1 )
+fallback/0 = ExtResource( 2 )
+
+[node name="Quiz" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 1023.0
+margin_bottom = 601.0
+
+[node name="NavigationControl" type="HBoxContainer" parent="VBoxContainer"]
+margin_right = 1023.0
+
+[node name="QuizItem" type="Label" parent="VBoxContainer"]
+margin_top = 112.0
+margin_right = 1023.0
+margin_bottom = 192.0
+size_flags_vertical = 6
+custom_fonts/font = SubResource( 1 )
+text = "Kanji"
+align = 1
+
+[node name="QuizOptionsBox" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 304.0
+margin_right = 1023.0
+margin_bottom = 601.0
+size_flags_vertical = 3

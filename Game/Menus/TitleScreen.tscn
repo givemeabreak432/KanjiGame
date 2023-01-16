@@ -33,3 +33,4 @@ custom_fonts/font = ExtResource( 2 )
 text = "Quiz"
 
 [connection signal="pressed" from="VBoxContainer/Dictionairy" to="." method="_on_Dictionairy_pressed"]
+[connection signal="pressed" from="VBoxContainer/Favorites" to="." method="_on_Favorites_pressed"]
