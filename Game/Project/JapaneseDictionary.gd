@@ -12,7 +12,7 @@ onready var jpn_dict = []
 onready var kanji
 
 #loading kanji class
-const KanjiScript = preload("Kanji.gd") # Relative path
+const KanjiScript = preload("res://Game/Project/Kanji.gd") # Relative path
 onready var current_kanji
 
 
@@ -43,11 +43,14 @@ func load_dict(file_name = dict):
 
 #search throuhgh dictionary for relevent kanji based on kun, on, or meaning
 #returns a list of indexes
-func search(text):
+#returns full list if return is size 0
+func search(text = ""):
 	var index_list = []
 	for i in jpn_dict.size():
 		if text in jpn_dict[i].get_meaning(true).to_lower():
 			index_list.append(i)
+	if index_list.size() == 0:
+		index_list = range(jpn_dict.size())
 	return index_list
 
 #get_list gets a sub-array of jpn_dict based on IDs

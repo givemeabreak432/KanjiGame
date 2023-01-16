@@ -3,7 +3,7 @@
 [ext_resource path="res://Assets/font_EN_JP.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Assets/LINE_Seed_JP/App/OTF/LINESeedJP_A_OTF_Rg.otf" type="DynamicFontData" id=2]
 [ext_resource path="res://Assets/LINE_Seed_Sans_EN/App/OTF/LINESeedSans_A_Rg.otf" type="DynamicFontData" id=3]
-[ext_resource path="res://FlashCardDisplay.gd" type="Script" id=4]
+[ext_resource path="res://Game/Menus/FlashCardDisplay.gd" type="Script" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 100

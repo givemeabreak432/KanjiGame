@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://ListSelector.gd" type="Script" id=1]
-[ext_resource path="res://ListCreator.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Game/Menus/ListSelector.gd" type="Script" id=1]
+[ext_resource path="res://Game/Menus/ListCreator.tscn" type="PackedScene" id=2]
 
 [node name="ListSelector" type="MenuButton"]
 margin_left = 24.0

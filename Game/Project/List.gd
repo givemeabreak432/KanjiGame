@@ -9,7 +9,7 @@
 extends Node
 
 #load kanji class
-const KanjiScript = preload("Kanji.gd")
+const KanjiScript = preload("res://Game/Project/Kanji.gd")
 onready var kanji
 
 #constants

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://TitleScreen.gd" type="Script" id=1]
+[ext_resource path="res://Game/Menus/TitleScreen.gd" type="Script" id=1]
 [ext_resource path="res://Assets/font_EN_JP.tres" type="DynamicFont" id=2]
 
 [node name="TitleScreen" type="MarginContainer"]
@@ -23,13 +23,13 @@ custom_fonts/font = ExtResource( 2 )
 text = "Full Dictionary"
 
 [node name="Favorites" type="Button" parent="VBoxContainer"]
-margin_left = 470.0
+margin_left = 489.0
 margin_top = 302.0
-margin_right = 553.0
+margin_right = 535.0
 margin_bottom = 330.0
 size_flags_horizontal = 4
 size_flags_vertical = 2
 custom_fonts/font = ExtResource( 2 )
-text = "Favorites"
+text = "Quiz"
 
 [connection signal="pressed" from="VBoxContainer/Dictionairy" to="." method="_on_Dictionairy_pressed"]

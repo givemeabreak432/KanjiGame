@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://KanjiInfo.gd" type="Script" id=1]
-[ext_resource path="res://ListSelector.tscn" type="PackedScene" id=2]
-[ext_resource path="res://DictionaryDisplay.tscn" type="PackedScene" id=3]
-[ext_resource path="res://FlashCardDisplay.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Game/Menus/KanjiInfo.gd" type="Script" id=1]
+[ext_resource path="res://Game/Menus/ListSelector.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Game/Menus/DictionaryDisplay.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Game/Menus/FlashCardDisplay.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Assets/InvisibleButton.tres" type="Theme" id=5]
-[ext_resource path="res://ListKanjiAdder.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Game/Menus/ListKanjiAdder.tscn" type="PackedScene" id=6]
 
 [node name="KanjiInfo" type="MarginContainer"]
 anchor_right = 1.0

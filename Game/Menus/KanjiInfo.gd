@@ -1,7 +1,7 @@
 extends MarginContainer
 
 #loading kanji class
-const KanjiScript = preload("Kanji.gd") # Relative path
+const KanjiScript = preload("res://Game/Project/Kanji.gd") # Relative path
 onready var current_kanji
 
 #global var

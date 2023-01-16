@@ -3,7 +3,7 @@ extends Container
 #display is only for displaying kanji. It holds the current kanji, but no other information
 
 #loading kanji class
-const KanjiScript = preload("Kanji.gd") # Relative path
+const KanjiScript = preload("res://Game/Project/Kanji.gd") # Relative path
 onready var current_kanji
 
 #node linked var
