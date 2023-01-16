@@ -18,15 +18,12 @@ Work on list selector.
 -append kanji to lists DONE
 -remove kanji from list - DONE
 
-Kanji Dictionary Display:
--Add different display modes:
--Flash Card Display
--instance "info container" to have different types of displays
--move kanjiinfo script to dictionarydisplay and flash card display
 
 kanji search function
 -Dynamically create sublist based on given critiera
 -meaning, onyomi, kunyomi, etc
+-currently only searches through meaning
+-possibly romaji search for on/kun
 
 kanjiinfo script
 -this script has evolved to hold information regarding current kanji, list, display etc
