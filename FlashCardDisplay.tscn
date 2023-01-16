@@ -1,0 +1,82 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Assets/font_EN_JP.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Assets/LINE_Seed_JP/App/OTF/LINESeedJP_A_OTF_Rg.otf" type="DynamicFontData" id=2]
+[ext_resource path="res://Assets/LINE_Seed_Sans_EN/App/OTF/LINESeedSans_A_Rg.otf" type="DynamicFontData" id=3]
+[ext_resource path="res://FlashCardDisplay.gd" type="Script" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 100
+font_data = ExtResource( 3 )
+fallback/0 = ExtResource( 2 )
+
+[node name="FlashCardDisplay" type="Container"]
+margin_top = 52.0
+margin_right = 1024.0
+margin_bottom = 52.0
+script = ExtResource( 4 )
+
+[node name="HSplitContainer" type="HSplitContainer" parent="."]
+margin_top = 48.0
+margin_right = 1020.0
+margin_bottom = 543.0
+mouse_filter = 1
+size_flags_vertical = 3
+
+[node name="KanjiTitle" type="VBoxContainer" parent="HSplitContainer"]
+margin_right = 1020.0
+margin_bottom = 495.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="KanjiLabel" type="Label" parent="HSplitContainer/KanjiTitle"]
+margin_right = 1020.0
+margin_bottom = 491.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 1 )
+text = "KANJI"
+align = 1
+valign = 1
+
+[node name="KanjiDrawn" type="TextureRect" parent="HSplitContainer/KanjiTitle"]
+margin_top = 495.0
+margin_right = 1020.0
+margin_bottom = 495.0
+
+[node name="KanjiInfo" type="VBoxContainer" parent="HSplitContainer"]
+visible = false
+margin_left = 516.0
+margin_right = 1020.0
+margin_bottom = 495.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="OnYomi" type="Label" parent="HSplitContainer/KanjiInfo"]
+margin_top = 210.0
+margin_right = 89.0
+margin_bottom = 232.0
+size_flags_horizontal = 2
+custom_fonts/font = ExtResource( 1 )
+text = "On Reading"
+align = 1
+
+[node name="KunYomi" type="Label" parent="HSplitContainer/KanjiInfo"]
+margin_top = 236.0
+margin_right = 104.0
+margin_bottom = 258.0
+size_flags_horizontal = 2
+custom_fonts/font = ExtResource( 1 )
+text = "Kun Readings"
+align = 1
+
+[node name="Meaning" type="Label" parent="HSplitContainer/KanjiInfo"]
+margin_top = 262.0
+margin_right = 74.0
+margin_bottom = 284.0
+size_flags_horizontal = 2
+custom_fonts/font = ExtResource( 1 )
+text = "Meanings"
+align = 1
+
+[connection signal="gui_input" from="HSplitContainer" to="." method="_on_HSplitContainer_gui_input"]

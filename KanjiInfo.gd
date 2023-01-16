@@ -12,14 +12,12 @@ var current_list_name = ""
 signal change_kanji
 #node linked var
 
-#onready var kanji_label = $VBoxContainer/DictionaryDisplay/InfoContainer/KanjiTitle/KanjiLabel
-#onready var on_yomi = $VBoxContainer/DictionaryDisplay/InfoContainer/KanjiInfo/OnYomi #line 6
-#onready var kun_yomi = $VBoxContainer/DictionaryDisplay/InfoContainer/KanjiInfo/KunYomi # line 7
-#onready var meaning = $VBoxContainer/DictionaryDisplay/InfoContainer/KanjiInfo/Meaning # line 5
 onready var page = $VBoxContainer/NavigationContainer/Page # page counter
 onready var list_selector = $VBoxContainer/NavigationContainer/ListSelector
 onready var list_adder = $VBoxContainer/NavigationContainer/ListAddKanji
 onready var remove_kanji_popup = $VBoxContainer/NavigationContainer/RemoveKanji/RemoveKanjiPopup
+onready var dictionary_display = $VBoxContainer/DictionaryDisplay
+onready var flash_card_display = $VBoxContainer/FlashCardDisplay
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -85,3 +83,13 @@ func _on_RemoveKanji_pressed():
 	else:
 		remove_kanji_popup.dialog_text = "Cannot remove kanji from dictionary."
 		remove_kanji_popup.popup()
+
+#changes display mode
+func _on_DisplayMode_item_selected(index):
+	if index == 0:
+		dictionary_display.visible = true
+		flash_card_display.visible = false
+	if index == 1:
+		dictionary_display.visible = false
+		flash_card_display.visible = true
+		

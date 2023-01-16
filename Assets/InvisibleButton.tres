@@ -1,0 +1,15 @@
+[gd_resource type="Theme" load_steps=5 format=2]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=6]
+
+[resource]
+Button/styles/focus = SubResource( 4 )
+Button/styles/hover = SubResource( 5 )
+Button/styles/normal = SubResource( 3 )
+Button/styles/pressed = SubResource( 6 )
