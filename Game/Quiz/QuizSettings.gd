@@ -4,6 +4,8 @@ extends Node
 
 
 onready var quiz_list = []
+onready var quiz_length = 5
+onready var number_of_options = 5
 
 func _ready():
 	pass # Replace with function body.

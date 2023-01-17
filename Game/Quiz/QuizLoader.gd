@@ -1,6 +1,7 @@
 #Quizloader menu allows player to customize quiz settings. 
 #ListSelection - For selecting which list to Quiz from
 #OptionButton - For selecting what kind of quiz. 
+#LengthButton - selecting legnth of quiz. Dropdown is innefficient, should make into "number line" esque object.
 #More to come...
 
 extends Node

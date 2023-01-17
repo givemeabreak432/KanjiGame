@@ -6,16 +6,17 @@ const QuizOption = preload("res://Game/Quiz/QuizOption.tscn") # Relative path
 onready var quiz_options_box = $VBoxContainer/QuizOptionsBox
 onready var quiz_item = $VBoxContainer/QuizItem
 onready var correct_label = $VBoxContainer/Correct
-
-#quiz settings - these define the quiz
-onready var random_number
-onready var number_of_options = 5
+onready var next_question = $VBoxContainer/HBoxContainer/NextQuestion
+onready var restart_quiz = $VBoxContainer/HBoxContainer/RestartButton
 
 #quiz stats
 onready var score = 0
-onready var correct_kanji
+onready var correct_kanji #holds the current kanji_ID
+onready var current_question #holds the number of questions answered thus far
+onready var correct_option #holds the current current option button index
 
 func _ready():
+	current_question = 0
 	create_question()
 
 #creates a quesstion based on list selectied on QuizSettings
@@ -23,7 +24,7 @@ func create_question():
 	
 	#select kanji and option to be correct
 	correct_kanji = randi() % QuizSettings.quiz_list.size()
-	var correct_option = randi() % number_of_options
+	correct_option = randi() % QuizSettings.number_of_options
 	
 	#remove remove any old answer buttons
 	for i in quiz_options_box.get_children():
@@ -31,7 +32,7 @@ func create_question():
 		i.queue_free()
 		
 	#create answer buttons and connect to answer_question function
-	for i in number_of_options:
+	for i in QuizSettings.number_of_options:
 		var option = QuizOption.instance()
 		if i == correct_option: option.set_kanji(correct_kanji, true)
 		else: option.set_kanji(correct_kanji, false)
@@ -41,11 +42,45 @@ func create_question():
 	
 	quiz_item.text = JapaneseDictionary.get_kanji(correct_kanji).get_kanji()
 
+#hides all incorrect answers, shows next question button.
 func answer_question(kanji_id):
-	print("kanji_id " + str(kanji_id))
-	print("correct_kanji " + str(correct_kanji))
 	if kanji_id == correct_kanji:
+		correct_label.text = "Correct"
 		score += 1
-		correct_label.text = "Score: " + str(score)
-	create_question()
+	else: correct_label.text = "Incorrect"
+	correct_label.visible = true
+	
+	#hides all but correct button, on the correct button disconnects the signal to prevent spamming button.
+	var j = 0
+	for i in quiz_options_box.get_children():
+		if j != correct_option:
+			quiz_options_box.remove_child(i)
+			i.queue_free()
+		else:
+			i.disconnect("button_hit", self, "answer_question")
+			i.set_h_size_flags(SIZE_EXPAND + SIZE_SHRINK_CENTER)
+		j+=1
+			
+	current_question += 1
+	next_question.visible = true
 
+#loads next question after buttons pressed, making sure to disconnect any previous answers
+#if all questions have been answered, ends the quiz.
+func _on_NextQuestion_pressed():
+	next_question.visible = false
+	correct_label.visible = false
+	if(current_question < QuizSettings.quiz_length):
+		for i in quiz_options_box.get_children():
+			quiz_options_box.remove_child(i)
+			i.queue_free()
+		create_question()
+	else:
+		restart_quiz.visible = true
+		quiz_item.text = "Quiz Ended \n Final Score: \n" + str(score)
+		for i in quiz_options_box.get_children():
+			quiz_options_box.remove_child(i)
+			i.queue_free()
+
+
+func _on_RestartButton_pressed():
+	get_tree().change_scene("res://Game/Quiz/QuizLoader.tscn")

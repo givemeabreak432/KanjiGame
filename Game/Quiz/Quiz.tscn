@@ -1,8 +1,14 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Assets/LINE_Seed_Sans_EN/App/OTF/LINESeedSans_A_Rg.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/LINE_Seed_JP/App/OTF/LINESeedJP_A_OTF_Rg.otf" type="DynamicFontData" id=2]
 [ext_resource path="res://Game/Quiz/Quiz.gd" type="Script" id=3]
+[ext_resource path="res://Assets/font_EN_JP.tres" type="DynamicFont" id=4]
+
+[sub_resource type="DynamicFont" id=2]
+size = 20
+font_data = ExtResource( 1 )
+fallback/0 = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=1]
 size = 60
@@ -18,26 +24,62 @@ script = ExtResource( 3 )
 margin_right = 1023.0
 margin_bottom = 601.0
 
-[node name="Correct" type="Label" parent="VBoxContainer"]
-margin_right = 1023.0
-margin_bottom = 14.0
-
 [node name="NavigationControl" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 18.0
 margin_right = 1023.0
-margin_bottom = 18.0
+
+[node name="Correct" type="Label" parent="VBoxContainer"]
+visible = false
+margin_left = 474.0
+margin_right = 548.0
+margin_bottom = 27.0
+size_flags_horizontal = 6
+custom_fonts/font = SubResource( 2 )
+text = "Correct"
+align = 1
 
 [node name="QuizItem" type="Label" parent="VBoxContainer"]
-margin_top = 125.0
+margin_top = 62.0
 margin_right = 1023.0
-margin_bottom = 205.0
+margin_bottom = 142.0
 size_flags_vertical = 6
 custom_fonts/font = SubResource( 1 )
 text = "Kanji"
 align = 1
 
 [node name="QuizOptionsBox" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 313.0
+margin_top = 204.0
 margin_right = 1023.0
-margin_bottom = 601.0
-size_flags_vertical = 3
+margin_bottom = 400.0
+size_flags_vertical = 11
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_left = 511.0
+margin_top = 502.0
+margin_right = 511.0
+margin_bottom = 502.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="NextQuestion" type="Button" parent="VBoxContainer/HBoxContainer"]
+visible = false
+margin_right = 146.0
+margin_bottom = 33.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+custom_fonts/font = ExtResource( 4 )
+text = "Next Question"
+icon_align = 1
+
+[node name="RestartButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+visible = false
+margin_left = 466.0
+margin_top = -20.0
+margin_right = 557.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+custom_fonts/font = ExtResource( 4 )
+text = "Restart Quiz"
+icon_align = 1
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/NextQuestion" to="." method="_on_NextQuestion_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/RestartButton" to="." method="_on_RestartButton_pressed"]
