@@ -14,7 +14,6 @@ const config_file = "res://Assets/lists/kanji.cfg"
 
 #variables
 onready var jpn_json #for parsing file
-onready var jpn_dict = []
 onready var kanji
 var config = ConfigFile.new()
 
@@ -56,20 +55,17 @@ func parse_dict(file_name = dict):
 
 			
 #search throuhgh dictionary for relevent kanji based on kun, on, or meaning
-#returns a list of indexes
+#returns a list of IDs
 #returns full list if return is size 0
 func search(text = ""):
-	var index_list = []
-	for i in jpn_dict.size():
-		if text in jpn_dict[i].get_meaning(true).to_lower():
-			index_list.append(i)
-	if index_list.size() == 0:
-		index_list = range(jpn_dict.size())
-	return index_list
-
-#get_list gets a sub-array of jpn_dict based on IDs
-func get_list():
-	return jpn_dict
+	var search_list = []
+	for i in size():
+		var kanji = get_kanji(i)
+		if text.to_lower() in kanji.get_meaning(true).to_lower():
+			search_list.append(i)
+	if search_list.size() == 0:
+		search_list = range(size())
+	return search_list
 
 #returns number of sections (kanji) in kanfig folder
 func size():
