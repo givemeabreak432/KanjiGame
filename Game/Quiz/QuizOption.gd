@@ -17,7 +17,7 @@ func set_kanji(kanji, correct):
 	kanji_id = kanji
 	if not correct:
 		while kanji == kanji_id:
-			kanji_id = randi() % JapaneseDictionary.get_list().size()
+			kanji_id = randi() % JapaneseDictionary.size()
 	
 	self.text = JapaneseDictionary.get_kanji(kanji_id).get_kanji()
 	

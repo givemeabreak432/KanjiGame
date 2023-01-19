@@ -64,9 +64,9 @@ func get_list_values(list):
 			return config.get_value("lists", list)
 		else: #selected list is empty
 			emit_signal("empty_list")
-			return range(JapaneseDictionary.get_list().size())
+			return range(JapaneseDictionary.size())
 	else:
-		return range(JapaneseDictionary.get_list().size())
+		return range(JapaneseDictionary.size())
 
 
 #TODO - sort list_entries, check for duplicates

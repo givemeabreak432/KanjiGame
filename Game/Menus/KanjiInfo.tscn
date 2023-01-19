@@ -74,6 +74,8 @@ margin_left = 966.0
 margin_right = 1024.0
 margin_bottom = 24.0
 text = "search"
+caret_blink = true
+caret_blink_speed = 0.5
 
 [node name="DisplayMode" type="OptionButton" parent="VBoxContainer"]
 margin_left = 930.0
