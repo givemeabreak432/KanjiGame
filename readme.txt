@@ -10,7 +10,43 @@ Lists are collection of Kanji in an array, with some special functions related t
 Default list is all kanji stored in an array and should be loaded in startup.
 autoload the dictionary!
 
-TODO:
+-----------scripts------------
+AutoLoader:
+JapaneseDictionary
+-reads kanji.cfg file
+-allows lookup for individual kanji
+List
+-loads config.cfg to hold all lists
+-lists are arrays of values. each value is an ID for a kanji held in JapaneseDictionary
+Quizsettings
+-Holds settings for current quiz - list name, quiz type, etc. 
+
+other scripts:
+kanji-
+-allows for instantiation of kanji class
+
+kanjiinfo
+-holds info regarding currently displayed kanji
+-children display  based on display mode that is instanced
+
+dictionarydisplay script
+-display mode for kanji - simply a screen of kanji
+-getparent.getparent call is awkward. try to fix.s
+
+flashcarddisplay 
+-another display mode. Click to flip between kanji and info
+
+
+quiz
+-quiz screen display, pulls info from quizsettings
+
+quizloader
+-Settings modification screen
+-updates quizsettings script
+
+
+
+--------------TODO--------------
 Work on list selector. 
 -create new lists DONE
 -delete lists
@@ -18,6 +54,9 @@ Work on list selector.
 -append kanji to lists DONE
 -remove kanji from list - DONE
 
+kanji-selector
+menu before kanji dictionary
+list of all kanji displayed as tiles, scrollable and selectable
 
 kanji search function
 -Dynamically create sublist based on given critiera
@@ -32,9 +71,8 @@ Quiz function-
 -QuizLength function, should always be less than length of list.
 -add quiz complete error states
 
-kanjiinfo script
--this script has evolved to hold information regarding current kanji, list, display etc
--this will be passed to display scripts nested inside
+kanji-stats
+tie into quiz
+track study rates/correct for each kanji
+sort based on stats in dictionary screen
 
-dictionarydisplay script
--getparent.getparent call is awkward. try to fix.
