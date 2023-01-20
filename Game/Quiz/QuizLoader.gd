@@ -9,17 +9,20 @@ extends Node
 onready var list_selector = $Container/Options/Options/ListSelection
 onready var length_number = $Container/Options/Options/Length/LengthNumber
 
-var length_scaler = 0
-var length_time = 0
+var length_scaler = 0 
+var length_time = 0 #how many frames the up/down buttons have been held down
+var max_length #max length for number of quiz questions. 
 var button_pressed = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	for each in List.get_list_keys():
-		list_selector.add_item(each)
+		if List.get_list_size(each) > 0:
+			list_selector.add_item(each)
 	pass 
 	
-	length_number.text = str(JapaneseDictionary.size())
+	max_length = JapaneseDictionary.size()
+	length_number.text = str(max_length)
 	
 func _process(i):
 	if button_pressed:
@@ -31,15 +34,15 @@ func _process(i):
 #updates length based on scaler, and length of time buttons have been held down
 func update_length():
 	var old_length = int(length_number.text)
-	if length_time % 10 == 0 and length_time != 0:
-		if(length_time % 100 == 0):
+	if length_time % 10 == 0:
+		if(length_time % 100 == 0 and length_time != 0):
 			length_scaler = length_scaler*2
 		
 		var new_length = old_length + length_scaler
 		
-		if new_length > JapaneseDictionary.size():
-			length_number.text = str(JapaneseDictionary.size())
-		elif new_length <= JapaneseDictionary.size() and new_length >= 1:
+		if new_length > max_length:
+			length_number.text = str(max_length)
+		elif new_length <= max_length and new_length >= 1:
 			length_number.text = str(new_length)
 		elif new_length < 1:
 			length_number.text = str(1)
@@ -70,3 +73,9 @@ func _on_DecreaseButton_button_up():
 func _on_IncreaseButton_button_up():
 	button_pressed = true
 	length_scaler = 0
+
+
+func _on_ListSelection_item_selected(index):
+	max_length = List.get_list_values(list_selector.text).size()
+	length_number.text = str(max_length)
+	pass # Replace with function body.

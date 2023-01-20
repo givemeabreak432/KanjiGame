@@ -128,6 +128,7 @@ margin_top = 381.0
 margin_right = 1025.0
 margin_bottom = 395.0
 
+[connection signal="item_selected" from="Container/Options/Options/ListSelection" to="." method="_on_ListSelection_item_selected"]
 [connection signal="button_down" from="Container/Options/Options/Length/DecreaseButton" to="." method="_on_DecreaseButton_button_down"]
 [connection signal="button_up" from="Container/Options/Options/Length/DecreaseButton" to="." method="_on_DecreaseButton_button_up"]
 [connection signal="button_down" from="Container/Options/Options/Length/IncreaseButton" to="." method="_on_IncreaseButton_button_down"]

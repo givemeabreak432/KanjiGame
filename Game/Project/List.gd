@@ -57,7 +57,7 @@ func is_empty(list):
 	else: return false
 
 #returns saved list based on key (name) provided
-#otherwise, return a list of every kanji ID, 0-list().size()
+#otherwise, return a list of every kanji ID
 func get_list_values(list):
 	if list != null and list in get_list_keys():
 		if not is_empty(list):
@@ -68,6 +68,8 @@ func get_list_values(list):
 	else:
 		return range(JapaneseDictionary.size())
 
+func get_list_size(list):
+	return config.get_value("lists", list).size()
 
 #TODO - sort list_entries, check for duplicates
 #add kanji "entry number" to list and stores in saved document.
