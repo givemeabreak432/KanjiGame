@@ -23,7 +23,7 @@ func _ready():
 func create_question():
 	
 	#select kanji and option to be correct
-	correct_kanji = randi() % QuizSettings.quiz_list.size()
+	correct_kanji = QuizSettings.quiz_list[randi() % QuizSettings.quiz_list.size()]
 	correct_option = randi() % QuizSettings.number_of_options
 	
 	#remove remove any old answer buttons
