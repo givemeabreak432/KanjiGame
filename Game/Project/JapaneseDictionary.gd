@@ -5,7 +5,6 @@
 #"section" = ID
 #key = kanji, onyomi, kunyomi, meaning
 #value = value
-#jpn dict is an array of kanji
 extends Node
 
 #constants
@@ -14,12 +13,10 @@ const config_file = "res://Assets/lists/kanji.cfg"
 
 #variables
 onready var jpn_json #for parsing file
-onready var kanji
 var config = ConfigFile.new()
 
 #loading kanji class
 const KanjiScript = preload("res://Game/Project/Kanji.gd") # Relative path
-onready var current_kanji
 
 
 func _ready():
@@ -72,7 +69,7 @@ func size():
 	return config.get_sections().size()
 	
 func get_kanji(index):
-	kanji = Kanji.new()
+	var kanji = Kanji.new()
 	kanji.kanji_setter(config.get_value(str(index), "kanji"), config.get_value(str(index), "on_yomi"), 
 	  config.get_value(str(index), "kun_yomi"), config.get_value(str(index), "meanings"))
 	return kanji
