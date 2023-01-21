@@ -38,9 +38,11 @@ text = "Correct"
 align = 1
 
 [node name="QuizItem" type="Label" parent="VBoxContainer"]
+margin_left = 440.0
 margin_top = 62.0
-margin_right = 1023.0
+margin_right = 583.0
 margin_bottom = 142.0
+size_flags_horizontal = 6
 size_flags_vertical = 6
 custom_fonts/font = SubResource( 1 )
 text = "Kanji"

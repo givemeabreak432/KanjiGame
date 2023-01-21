@@ -77,14 +77,14 @@ text = "Dictionary"
 items = [ "Dictionary", null, false, 0, null ]
 selected = 0
 
-[node name="OptionButton" type="OptionButton" parent="Container/Options/Options"]
+[node name="QuizTypeButton" type="OptionButton" parent="Container/Options/Options"]
 margin_top = 37.0
 margin_right = 122.0
 margin_bottom = 70.0
 size_flags_horizontal = 0
 custom_fonts/font = ExtResource( 1 )
 text = "Find Kanji"
-items = [ "Find Kanji", null, false, 0, null ]
+items = [ "Find Kanji", null, false, 0, null, "Find Meaning", null, false, 1, null ]
 selected = 0
 
 [node name="Length" type="HBoxContainer" parent="Container/Options/Options"]

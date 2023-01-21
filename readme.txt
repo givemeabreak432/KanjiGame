@@ -24,6 +24,13 @@ Quizsettings
 other scripts:
 kanji-
 -allows for instantiation of kanji class
+-gettings for kanji variables that hold array take 3 arguements:
+-boolean as_string, str del, int length
+-as_string, if true, returns a string. If false, returns the whole array
+-del indicates what to use as a deliminator in string return 
+-length refers to how many objects from array to return. 
+-You do not have to know length of array to use length, if your number is higher
+  than the length, then it will simply return the whole array as a string
 
 kanjiinfo
 -holds info regarding currently displayed kanji
@@ -70,9 +77,11 @@ Quiz function-
 -Add error catching for lists of length 0
 -QuizLength function, should always be less than length of list.
 -add quiz complete error states
+-Fix font sizes with longer quiz answers
 
 kanji-stats
 tie into quiz
 track study rates/correct for each kanji
 sort based on stats in dictionary screen
 
+-other non quiz games?

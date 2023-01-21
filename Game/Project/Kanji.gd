@@ -20,27 +20,33 @@ func kanji_setter(kan, on, kun, mean):
 	pass
 
 #all array getters can be passed boolean for string return. By default it is false
+#all getters can also pass "length" node to subset string to first x of array
 func get_kanji():
 	return kanji
-func get_on_yomi(string = false, del = ""):
+func get_on_yomi(string = false, del = "", length = null):
 	if string:
-		return arr_to_string(on_yomi, del)
+		return arr_to_string(on_yomi, del, length)
 	return on_yomi
-func get_kun_yomi(string = false, del = ""):
+func get_kun_yomi(string = false, del = "", length = null):
 	if string:
-		return arr_to_string(kun_yomi, del)
+		return arr_to_string(kun_yomi, del, length)
 	return kun_yomi
-func get_meaning(string = false, del = ""):
+func get_meaning(string = false, del = "", length=null):
 	if string:
-		return arr_to_string(meaning, del)
+		return arr_to_string(meaning, del, length)
 	return meaning
 
-#simple arr to string method
-func arr_to_string(arr, var del = ""):
+#Converts an array to a string, using the deliminter provided. If a length is passed in
+#will stop the string conversion early
+func arr_to_string(arr, var del = "", length=null):
 	var out = ""
+	var i = 0
 	for each in arr:
-		out = out + each
+		out += each
+		i+=1
+		if i == length:
+			return out
 		if arr[arr.size()-1] != each:
-			out = out + del
+			out += del
 	return out
 

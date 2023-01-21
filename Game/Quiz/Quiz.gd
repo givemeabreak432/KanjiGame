@@ -38,9 +38,22 @@ func create_question():
 		else: option.set_kanji(correct_kanji, false)
 		quiz_options_box.add_child(option)
 		quiz_options_box.get_child(i).connect("button_hit", self, "answer_question")
-		
 	
-	quiz_item.text = JapaneseDictionary.get_kanji(correct_kanji).get_kanji()
+	draw_question()
+	
+#draws the current question based on quiz type.
+func draw_question():
+	var question_text = ""
+	#draws kanji info
+	if(QuizSettings.quiz_type == 0):
+		question_text = JapaneseDictionary.get_kanji(correct_kanji).get_meaning(true, ", ", 2) + '\n'
+		question_text += JapaneseDictionary.get_kanji(correct_kanji).get_on_yomi(true, ", ") + "\n"
+		question_text += JapaneseDictionary.get_kanji(correct_kanji).get_kun_yomi(true, ", ")
+	if(QuizSettings.quiz_type == 1):
+		question_text = JapaneseDictionary.get_kanji(correct_kanji).get_kanji()
+		
+	quiz_item.text = question_text
+
 
 #hides all incorrect answers, shows next question button.
 func answer_question(kanji_id):

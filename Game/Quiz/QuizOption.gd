@@ -19,9 +19,12 @@ func set_kanji(kanji, correct):
 		while kanji == kanji_id:
 			kanji_id = randi() % JapaneseDictionary.size()
 	
-	self.text = JapaneseDictionary.get_kanji(kanji_id).get_kanji()
+	#find kanji
+	if(QuizSettings.quiz_type == 0):
+		self.text = JapaneseDictionary.get_kanji(kanji_id).get_kanji()
+	if(QuizSettings.quiz_type == 1):
+		self.text = JapaneseDictionary.get_kanji(kanji_id).get_meaning(true, ", ", 1)
 	
-	pass
 
 func _on_QuizOption_pressed():
 	emit_signal("button_hit", kanji_id)

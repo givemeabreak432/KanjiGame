@@ -7,6 +7,7 @@
 extends Node
 
 onready var list_selector = $Container/Options/Options/ListSelection
+onready var quiz_type = $Container/Options/Options/QuizTypeButton
 onready var length_number = $Container/Options/Options/Length/LengthNumber
 
 var length_scaler = 0 
@@ -24,7 +25,7 @@ func _ready():
 	max_length = JapaneseDictionary.size()
 	length_number.text = str(max_length)
 	
-func _process(i):
+func _process(_i):
 	if button_pressed:
 		update_length()
 		length_time += 1
@@ -50,6 +51,7 @@ func update_length():
 func _on_Begin_pressed():
 	QuizSettings.quiz_list = List.get_list_values(list_selector.text)
 	QuizSettings.quiz_length = int(length_number.text)
+	QuizSettings.quiz_type = quiz_type.get_selected_id()
 	get_tree().change_scene("res://Game/Quiz/Quiz.tscn")
 	pass 
 
@@ -75,7 +77,7 @@ func _on_IncreaseButton_button_up():
 	length_scaler = 0
 
 
-func _on_ListSelection_item_selected(index):
+func _on_ListSelection_item_selected(_index):
 	max_length = List.get_list_values(list_selector.text).size()
 	length_number.text = str(max_length)
 	pass # Replace with function body.
