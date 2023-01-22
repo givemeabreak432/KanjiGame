@@ -1,6 +1,7 @@
 extends Control
 
-const QuizOption = preload("res://Game/Quiz/QuizOption.tscn") # Relative path
+const QuizOption = preload("res://Game/Quiz/QuizOption.tscn")
+const KanjiInfo = preload("res://Game/Menus/KanjiInfo.tscn") 
 
 
 onready var quiz_options_box = $VBoxContainer/QuizOptionsBox
@@ -8,12 +9,14 @@ onready var quiz_item = $VBoxContainer/QuizItem
 onready var correct_label = $VBoxContainer/Correct
 onready var next_question = $VBoxContainer/HBoxContainer/NextQuestion
 onready var restart_quiz = $VBoxContainer/HBoxContainer/RestartButton
+onready var quiz_screen = $VBoxContainer
 
 #quiz stats
 onready var score = 0
 onready var correct_kanji #holds the current kanji_ID
 onready var current_question #holds the number of questions answered thus far
 onready var correct_option #holds the current current option button index
+var kanji_page #for holding KanjiInfo child
 
 func _ready():
 	current_question = 0
@@ -55,7 +58,7 @@ func draw_question():
 	quiz_item.text = question_text
 
 
-#hides all incorrect answers, shows next question button.
+#hides all incorrect answers, shows next question button. Also connects connect kanji button to kanji_info page
 func answer_question(kanji_id):
 	if kanji_id == correct_kanji:
 		correct_label.text = "Correct"
@@ -71,6 +74,7 @@ func answer_question(kanji_id):
 			i.queue_free()
 		else:
 			i.disconnect("button_hit", self, "answer_question")
+			i.connect("button_hit", self, "show_kanji_info")
 			i.set_h_size_flags(SIZE_EXPAND + SIZE_SHRINK_CENTER)
 		j+=1
 			
@@ -94,6 +98,19 @@ func _on_NextQuestion_pressed():
 			quiz_options_box.remove_child(i)
 			i.queue_free()
 
+#only ran on the "correct/incorrect" kanji screen. Opens up dictionary reader.
+func show_kanji_info(kanji_id):
+	kanji_page = KanjiInfo.instance()
+	quiz_screen.visible = false
+	add_child(kanji_page)
+	kanji_page.load_page(kanji_id)
+	kanji_page.connect("close_screen", self, "close_kanji_screen")
+
+#hides loaded kanji_page (KanjiInfo node)
+func close_kanji_screen():
+	remove_child(kanji_page)
+	kanji_page.queue_free()
+	quiz_screen.visible = true
 
 func _on_RestartButton_pressed():
 	get_tree().change_scene("res://Game/Quiz/QuizLoader.tscn")

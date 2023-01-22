@@ -25,7 +25,13 @@ size_flags_vertical = 3
 margin_right = 1019.0
 margin_bottom = 32.0
 
+[node name="BackButton" type="Button" parent="VBox/NavigationContainer"]
+margin_right = 20.0
+margin_bottom = 32.0
+text = "X"
+
 [node name="SearchBar" type="LineEdit" parent="VBox/NavigationContainer"]
+margin_left = 24.0
 margin_right = 1019.0
 margin_bottom = 32.0
 size_flags_horizontal = 7
@@ -62,4 +68,5 @@ margin_left = 767.0
 margin_right = 1019.0
 size_flags_horizontal = 3
 
+[connection signal="pressed" from="VBox/NavigationContainer/BackButton" to="." method="_on_BackButton_pressed"]
 [connection signal="text_entered" from="VBox/NavigationContainer/SearchBar" to="." method="_on_SearchBar_text_entered"]

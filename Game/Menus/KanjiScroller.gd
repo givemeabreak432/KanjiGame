@@ -56,3 +56,7 @@ func _on_SearchBar_text_entered(text):
 	search_list = JapaneseDictionary.search(text)
 	unload_buttons()
 	load_buttons()
+
+
+func _on_BackButton_pressed():
+	get_tree().change_scene("res://Game/Menus/TitleScreen.tscn")

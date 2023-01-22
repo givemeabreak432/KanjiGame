@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Assets/LINE_Seed_Sans_EN/App/OTF/LINESeedSans_A_Rg.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/LINE_Seed_JP/App/OTF/LINESeedJP_A_OTF_Rg.otf" type="DynamicFontData" id=2]
 [ext_resource path="res://Game/Quiz/QuizOption.gd" type="Script" id=3]
+[ext_resource path="res://Assets/InvisibleButton.tres" type="Theme" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 30
@@ -14,6 +15,7 @@ margin_right = 1022.0
 margin_bottom = 596.0
 size_flags_horizontal = 7
 size_flags_vertical = 10
+theme = ExtResource( 4 )
 custom_fonts/font = SubResource( 1 )
 script = ExtResource( 3 )
 
