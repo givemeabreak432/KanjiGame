@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Game/Menus/KanjiScroller.gd" type="Script" id=1]
+
+[node name="KanjiScroller" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 1 )
+
+[node name="Scroller" type="ScrollContainer" parent="."]
+margin_right = 1020.0
+margin_bottom = 604.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Row" type="HBoxContainer" parent="Scroller"]
+margin_right = 1020.0
+size_flags_horizontal = 3
+
+[node name="Column1" type="VBoxContainer" parent="Scroller/Row"]
+margin_right = 252.0
+size_flags_horizontal = 3
+
+[node name="Column2" type="VBoxContainer" parent="Scroller/Row"]
+margin_left = 256.0
+margin_right = 508.0
+size_flags_horizontal = 3
+
+[node name="Column3" type="VBoxContainer" parent="Scroller/Row"]
+margin_left = 512.0
+margin_right = 764.0
+size_flags_horizontal = 3
+
+[node name="Column4" type="VBoxContainer" parent="Scroller/Row"]
+margin_left = 768.0
+margin_right = 1020.0
+size_flags_horizontal = 3

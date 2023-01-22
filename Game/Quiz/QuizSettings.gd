@@ -4,7 +4,7 @@ extends Node
 
 
 onready var quiz_list = []
-onready var quiz_type
+onready var quiz_type = 0 
 onready var quiz_length = 5
 onready var number_of_options = 5
 

@@ -9,7 +9,7 @@ func _ready():
 
 
 func _on_Dictionairy_pressed():
-	get_tree().change_scene("res://Game/Menus/KanjiInfo.tscn")
+	get_tree().change_scene("res://Game/Menus/KanjiScroller.tscn")
 
 
 func _on_Favorites_pressed():

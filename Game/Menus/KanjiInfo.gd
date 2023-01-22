@@ -10,6 +10,7 @@ var current_list = []
 var current_list_name = ""
 
 signal change_kanji
+signal close_screen
 #node linked var
 
 onready var page = $VBoxContainer/NavigationContainer/Page # page counter
@@ -45,6 +46,10 @@ func load_list(list = null, searched = false):
 		page.text = str(current_page + 1) + "/" + str(current_list.size())
 	emit_signal("change_kanji", current_list[current_page])
 
+func load_page(kanji_id):
+	current_page = kanji_id
+	page.text = str(current_page + 1) + "/" + str(current_list.size())
+	emit_signal("change_kanji", current_list[current_page])
 #*********************************#
 #SIGNAL functions
 #These functions run when a signal happens
@@ -76,7 +81,7 @@ func _on_RightButton_pressed():
 
 
 func _on_BackButton_pressed():
-	get_tree().change_scene("res://Game/Menus/TitleScreen.tscn")
+	emit_signal("close_screen")
 
 
 func _on_RemoveKanji_pressed():

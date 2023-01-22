@@ -62,10 +62,9 @@ menu before kanji dictionary
 list of all kanji displayed as tiles, scrollable and selectable
 
 kanji search function
--Dynamically create sublist based on given critiera
--meaning, onyomi, kunyomi, etc
--currently only searches through meaning
--possibly romaji search for on/kun
+-currently only supports meaning-search
+-want to allow kun-yomi/on-yomi search, but need to translate romaji
+
 
 Quiz function-
 -QuizSettings holds quiz settings set in QuizLoader. 
@@ -81,3 +80,4 @@ track study rates/correct for each kanji
 sort based on stats in dictionary screen
 
 -other non quiz games?
+-Full dictionary - need to find free, online translations
