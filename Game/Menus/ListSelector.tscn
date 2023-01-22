@@ -17,12 +17,36 @@ __meta__ = {
 
 [node name="ListCreator" parent="." instance=ExtResource( 2 )]
 
-[node name="ListDeleter" type="PopupPanel" parent="."]
+[node name="ListDeleter" type="ConfirmationDialog" parent="."]
 margin_right = 8.0
 margin_bottom = 8.0
+
+[node name="DeleterContainer" type="VBoxContainer" parent="ListDeleter"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 192.0
+margin_bottom = 66.0
+
+[node name="DeleteLabel" type="Label" parent="ListDeleter/DeleterContainer"]
+margin_right = 184.0
+margin_bottom = 14.0
+text = "Select List to Delete"
+
+[node name="ListDeleter" type="OptionButton" parent="ListDeleter/DeleterContainer"]
+margin_top = 18.0
+margin_right = 184.0
+margin_bottom = 38.0
+
+[node name="DeleteConfirm" type="AcceptDialog" parent="ListDeleter"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 192.0
+margin_bottom = 66.0
 
 [node name="EmptyList" type="ConfirmationDialog" parent="."]
 margin_right = 200.0
 margin_bottom = 70.0
 dialog_text = "Selected List is Empty!
 Loaded dictionary."
+
+[connection signal="confirmed" from="ListDeleter" to="." method="_on_ListDeleter_confirmed"]

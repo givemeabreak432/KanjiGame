@@ -25,7 +25,7 @@ func _ready():
 	#connect signals
 	list_selector.connect("select_list", self, "load_list")
 	list_adder.connect("list_add_kanji", self, "add_to_list")
-	List.connect("list_created", self, "_reload_directories")
+	List.connect("lists_modified", self, "_reload_directories")
 	pass # Replace with function body.
 
 #load list updates current list to selected list. If nothing is passed in, defaults to dictionary

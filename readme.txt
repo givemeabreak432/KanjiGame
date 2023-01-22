@@ -54,12 +54,8 @@ quizloader
 
 
 --------------TODO--------------
-Work on list selector. 
--create new lists DONE
--delete lists
--load lists - DONE
--append kanji to lists DONE
--remove kanji from list - DONE
+Work on list selector:
+-duplicate names crash game
 
 kanji-selector
 menu before kanji dictionary

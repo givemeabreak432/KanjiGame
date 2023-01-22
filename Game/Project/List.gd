@@ -20,7 +20,7 @@ var config = ConfigFile.new()
 
 #send signals
 signal empty_list
-signal list_created #whenever lists are updated, list_created is emitte to update relevent menus
+signal lists_modified #emitted to tell containers to reload lists
 signal already_in_list
 
 # Called when the node enters the scene tree for the first time.
@@ -43,9 +43,14 @@ func load_lists():
 func add_list(input):
 	config.set_value("lists", input, Array())
 	config.save(config_file)
-	emit_signal("list_created")
-	pass
+	emit_signal("lists_modified")
 
+#deletes list from config file
+func delete_list(list):
+	config.erase_section_key("lists", list)
+	config.save(config_file)
+	emit_signal("lists_modified")
+	
 func get_list_keys():
 	return config.get_section_keys("lists")
 	
