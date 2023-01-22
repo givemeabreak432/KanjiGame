@@ -60,10 +60,13 @@ Work on list selector:
 kanji-selector
 menu before kanji dictionary
 list of all kanji displayed as tiles, scrollable and selectable
+-needs to be optimized - doesn't need to load all 2000+ buttons at once
+-add to navigation bar: multi-add kanji to list, back button
+-seach sometimes results in strange layout - "king"
 
 kanji search function
--currently only supports meaning-search
--want to allow kun-yomi/on-yomi search, but need to translate romaji
+-search supports kanji, meaning, on/kun yomi
+-however, cannot convert romaji -> kana yet
 
 
 Quiz function-
@@ -78,6 +81,8 @@ kanji-stats
 tie into quiz
 track study rates/correct for each kanji
 sort based on stats in dictionary screen
+-stats can show in info screen, but only as a button in the corner
+-or possibly a display mode to show quiz stats
 
 -other non quiz games?
 -Full dictionary - need to find free, online translations

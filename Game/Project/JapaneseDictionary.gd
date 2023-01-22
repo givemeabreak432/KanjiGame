@@ -60,6 +60,8 @@ func search(text = ""):
 		var kanji = get_kanji(i)
 		if text.to_lower() in kanji.get_meaning(true).to_lower():
 			search_list.append(i)
+		elif text == kanji.get_kanji() or text in kanji.get_kun_yomi() or text in kanji.get_on_yomi():
+			search_list.append(i)
 	if search_list.size() == 0:
 		search_list = range(size())
 	return search_list
