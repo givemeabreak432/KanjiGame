@@ -21,9 +21,27 @@ margin_bottom = 597.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="NavigationContainer" type="HBoxContainer" parent="VBox"]
+[node name="ListSelectorContainer" type="HBoxContainer" parent="VBox"]
 margin_right = 1019.0
-margin_bottom = 32.0
+margin_bottom = 20.0
+
+[node name="KanjiButton" type="Button" parent="VBox/ListSelectorContainer"]
+margin_right = 507.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+text = "Kanji"
+
+[node name="RadicalButton" type="Button" parent="VBox/ListSelectorContainer"]
+margin_left = 511.0
+margin_right = 1019.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+text = "Radicals"
+
+[node name="NavigationContainer" type="HBoxContainer" parent="VBox"]
+margin_top = 24.0
+margin_right = 1019.0
+margin_bottom = 56.0
 
 [node name="BackButton" type="Button" parent="VBox/NavigationContainer"]
 margin_right = 20.0
@@ -39,34 +57,43 @@ custom_fonts/font = SubResource( 1 )
 text = "Search"
 
 [node name="Scroller" type="ScrollContainer" parent="VBox"]
-margin_top = 36.0
+margin_top = 60.0
 margin_right = 1019.0
 margin_bottom = 597.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Row" type="HBoxContainer" parent="VBox/Scroller"]
-margin_right = 1019.0
+[node name="ScrollMargins" type="MarginContainer" parent="VBox/Scroller"]
+margin_right = 1007.0
+margin_bottom = 7000.0
+size_flags_horizontal = 7
+size_flags_vertical = 3
+custom_constants/margin_bottom = 7000
+
+[node name="Row" type="HBoxContainer" parent="VBox/Scroller/ScrollMargins"]
+margin_right = 1007.0
 size_flags_horizontal = 3
 
-[node name="Column1" type="VBoxContainer" parent="VBox/Scroller/Row"]
-margin_right = 251.0
+[node name="Column1" type="VBoxContainer" parent="VBox/Scroller/ScrollMargins/Row"]
+margin_right = 248.0
 size_flags_horizontal = 3
 
-[node name="Column2" type="VBoxContainer" parent="VBox/Scroller/Row"]
-margin_left = 255.0
-margin_right = 507.0
+[node name="Column2" type="VBoxContainer" parent="VBox/Scroller/ScrollMargins/Row"]
+margin_left = 252.0
+margin_right = 501.0
 size_flags_horizontal = 3
 
-[node name="Column3" type="VBoxContainer" parent="VBox/Scroller/Row"]
-margin_left = 511.0
-margin_right = 763.0
+[node name="Column3" type="VBoxContainer" parent="VBox/Scroller/ScrollMargins/Row"]
+margin_left = 505.0
+margin_right = 754.0
 size_flags_horizontal = 3
 
-[node name="Column4" type="VBoxContainer" parent="VBox/Scroller/Row"]
-margin_left = 767.0
-margin_right = 1019.0
+[node name="Column4" type="VBoxContainer" parent="VBox/Scroller/ScrollMargins/Row"]
+margin_left = 758.0
+margin_right = 1007.0
 size_flags_horizontal = 3
 
+[connection signal="pressed" from="VBox/ListSelectorContainer/RadicalButton" to="." method="_on_RadicalButton_pressed"]
 [connection signal="pressed" from="VBox/NavigationContainer/BackButton" to="." method="_on_BackButton_pressed"]
 [connection signal="text_entered" from="VBox/NavigationContainer/SearchBar" to="." method="_on_SearchBar_text_entered"]
+[connection signal="scroll_started" from="VBox/Scroller" to="." method="_on_Scroller_scroll_started"]

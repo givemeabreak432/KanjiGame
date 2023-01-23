@@ -47,9 +47,9 @@ func parse_dict(file_name = dict):
 			config.set_value(str(i), "on_yomi", jpn_json[jpn_json.keys()[each]]["readings_on"])
 			config.set_value(str(i), "kun_yomi",  jpn_json[jpn_json.keys()[each]]["readings_kun"])
 			config.set_value(str(i), "meanings", jpn_json[jpn_json.keys()[each]]["meanings"])
+			config.set_value(str(i), "radicals", jpn_json[jpn_json.keys()[each]]["wk_radicals"])
 			i+=1
 		config.save(config_file)
-
 			
 #search throuhgh dictionary for relevent kanji based on kun, on, or meaning
 #returns a list of IDs
@@ -75,3 +75,12 @@ func get_kanji(index):
 	kanji.kanji_setter(config.get_value(str(index), "kanji"), config.get_value(str(index), "on_yomi"), 
 	  config.get_value(str(index), "kun_yomi"), config.get_value(str(index), "meanings"))
 	return kanji
+
+func get_radicals():
+	var radicals = []
+	for each in size():
+		print(config.get_value(str(each), "radicals"))
+		if config.get_value(str(each), "radicals"):
+			if config.get_value(str(each), "radicals").size() == 1:
+				radicals.append(each)
+	return radicals

@@ -57,10 +57,23 @@ quizloader
 Work on list selector:
 -duplicate names crash game
 
-kanji-selector
-menu before kanji dictionary
+japanesedictionary
+-add radicals. Possibly add functions to Lists to track radicals as well for study
+-quiz on radicals too
+
+kanji-scroller
+4 tabs:
+kanji - radicals - hiragana - katakana
+***added radicals list, however it's a bit hacked together and not 100% accurate
+-radicals are just kanji with only 1 radical, but the data-set is incomplete and inaccurate
+-Would be better to find another source and just read in a seperate file
+-When I make this change, make sure to change JapaneseDictionary parse_dict(), get_radicals(), as well as _on_radicalbutton_pressed() in kanji_scroller
+-Radicals should also have their own unique info page
+-Katakana and Hiragana should also have their own info pages
+
 list of all kanji displayed as tiles, scrollable and selectable
 -needs to be optimized - doesn't need to load all 2000+ buttons at once
+--unsure if possible, scroll_started() does not work. Commented out related functionality
 -add to navigation bar: multi-add kanji to list, back button
 -seach sometimes results in strange layout - "king"
 
