@@ -83,10 +83,11 @@ kanji search function
 
 
 Quiz function-
--QuizSettings holds quiz settings set in QuizLoader. 
 -Extrapolate on QuizLoader settings available 
+--number of options
+--more quiz types
 -Add error catching for lists of length 0
--QuizLength function, should always be less than length of list.
+-test editing lists in the middle of quiz. should provide no error.
 -add quiz complete error states
 -Fix font sizes with longer quiz answers
 

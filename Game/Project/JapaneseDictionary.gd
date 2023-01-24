@@ -84,3 +84,142 @@ func get_radicals():
 			if config.get_value(str(each), "radicals").size() == 1:
 				radicals.append(each)
 	return radicals
+
+#translates romaji to hiragana
+func translate_romaji(input):
+	input = input.replace(" ", "").to_lower()
+	var output = ""
+	var i = 0
+	var inserted_y = false
+	while i < input.length():
+		if input[i] == "a" or input[i] == "i" or input[i] == "u" or input[i] == "e" or input[i] == "o":
+			match input[i]:
+				"a": output+="あ"
+				"i": output+= "い"
+				"u": output+= "う"
+				"e": output+= "え"
+				"o": output+= "お"
+			i+=1
+			continue
+		else:
+			if i+1 < input.length(): #make sure next character exists
+				if i+2 < input.length() and input[i+1] == "y" and not inserted_y: #preparing little y: kya
+					input = input.insert(i+1, "i")
+					inserted_y = true
+				if input[i+1] == "a" or input[i+1] == "i" or input[i+1] == "u" or input[i+1] == "e" or input[i+1] == "o":
+					match input.substr(i,2): #excludes shi, chi, tsu, dji, dzu
+						"ka":output+="か"
+						"ki":output+="き"
+						"ku":output+="く"
+						"ke":output+="け"
+						"ko":output+="こ"
+						"sa":output+="さ"
+						"su":output+="す"
+						"se":output+="せ"
+						"so":output+="そ"
+						"ta":output+="た"
+						"te":output+="て"
+						"to":output+="と"
+						"na":output+="な"
+						"ni":output+="に"
+						"nu":output+="ぬ"
+						"ne":output+="ね"
+						"no":output+="の"
+						"ha":output+="は"
+						"hi":output+="ひ"
+						"fu":output+="ふ"
+						"he":output+="へ"
+						"ho":output+="ほ"
+						"ma":output+="ま"
+						"mi":output+="み"
+						"mu":output+="む"
+						"me":output+="め"
+						"mo":output+="も"
+						"ya":
+							if inserted_y: output+="ゃ"
+							else: output+="や"
+							inserted_y = false
+						"yu": 
+							if inserted_y: output+="ゅ"
+							else:output+="ゆ"
+							inserted_y = false
+						"yo":
+							if inserted_y: output+="ょ"
+							else: output+="よ"
+							inserted_y = false
+						"ra":output+="ら"
+						"ri":output+="り"
+						"ru":output+="る"
+						"re":output+="れ"
+						"ro":output+="ろ"
+						"wa":output+="わ"
+						"wo":output+="を"
+						"ga":output+="が"
+						"gi":output+="ぎ"
+						"gu":output+="ぐ"
+						"ge":output+="げ"
+						"go":output+="ご"
+						"za":output+="ざ"
+						"ji":output+="じ"
+						"zu":output+="ず"
+						"ze":output+="ぜ"
+						"zo":output+="ぞ"
+						"da":output+="だ"
+						"de":output+="で"
+						"do":output+="ど"
+						"ba":output+="ば"
+						"bi":output+="び"
+						"bu":output+="ぶ"
+						"be":output+="べ"
+						"bo":output+="ぼ"
+						"pa":output+="ぱ"
+						"pi":output+="ぴ"
+						"pu":output+="ぷ"
+						"pe":output+="ぺ"
+						"po":output+="ぽ"
+						_:
+							output+=input[i]
+							i-=1
+					#skips next character
+					i+=2
+					continue
+				elif input[i] == input[i+1]: #double consonant
+					output+="っ" #bocchi
+					i+=1
+					continue
+				elif i + 2 < input.length(): # 3 character combos
+					if input[i+2] != "y":
+						match input.substr(i,3):
+							"shi":
+								output += "し"
+								i+=3
+							"chi":
+								output += "ち"
+								i+=3
+							"tsu":
+								output += "つ"
+								i+=3
+							"dji":
+								output += "ぢ"
+								i+=3
+							"dzu":
+								output += "づ"
+								i+=3
+							_:
+								output+=input[i]
+								i+=1
+						continue
+					else:
+						output += input[i]
+						i+=1
+						continue
+				else:
+					output+= input[i]
+					i+=1
+					continue
+			else:
+				output += input[i]
+				i+=1
+				continue
+	return output
+	
