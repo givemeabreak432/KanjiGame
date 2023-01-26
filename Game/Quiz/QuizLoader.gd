@@ -81,3 +81,7 @@ func _on_ListSelection_item_selected(_index):
 	max_length = List.get_list_values(list_selector.text).size()
 	length_number.text = str(max_length)
 	pass # Replace with function body.
+
+
+func _on_QuitButton_pressed():
+	get_tree().change_scene("res://Game/Menus/TitleScreen.tscn")

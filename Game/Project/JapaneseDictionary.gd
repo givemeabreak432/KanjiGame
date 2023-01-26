@@ -77,10 +77,28 @@ func get_kanji(index):
 	  config.get_value(str(index), "kun_yomi"), config.get_value(str(index), "meanings"))
 	return kanji
 
+#kanji can be quized, these stats are stored as quizes, correct in the config file.
+#This function updates those stats.
+#kanji_id is the currently quized on kanji
+#answered_correctly should be a boolean to indicate if question was answered correctly or incorrect
+func update_stats(kanji_id, answered_correctly):
+	var quiz_num
+	kanji_id = str(kanji_id)
+	var kanji = get_kanji(kanji_id)
+	if not config.has_section_key(kanji_id, "quizes"):
+		quiz_num=1
+	else: quiz_num = config.get_value(kanji_id, "quizes") + 1
+	config.set_value(kanji_id, "quizes", quiz_num)
+	if answered_correctly:
+		if config.has_section_key(kanji_id, "correct"):
+			config.set_value(kanji_id, "correct", config.get_value(kanji_id, "correct") + 1)
+		else: 
+			config.set_value(kanji_id, "correct", 1)
+	config.save(config_file)
+
 func get_radicals():
 	var radicals = []
 	for each in size():
-		print(config.get_value(str(each), "radicals"))
 		if config.get_value(str(each), "radicals"):
 			if config.get_value(str(each), "radicals").size() == 1:
 				radicals.append(each)

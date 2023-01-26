@@ -16,18 +16,31 @@ margin_bottom = 598.0
 size_flags_horizontal = 2
 alignment = 1
 
+[node name="NavigationBar" type="HBoxContainer" parent="Container"]
+margin_right = 20.0
+margin_bottom = 20.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="QuitButton" type="Button" parent="Container/NavigationBar"]
+margin_right = 20.0
+margin_bottom = 20.0
+text = "X"
+
 [node name="QuizLabel" type="Label" parent="Container"]
-margin_top = 202.0
+margin_top = 179.0
 margin_right = 1025.0
-margin_bottom = 229.0
+margin_bottom = 206.0
+size_flags_vertical = 10
 custom_fonts/font = ExtResource( 1 )
 text = "Quiz Settings"
 align = 1
 
 [node name="Options" type="HSplitContainer" parent="Container"]
-margin_top = 233.0
+margin_top = 248.0
 margin_right = 1025.0
-margin_bottom = 340.0
+margin_bottom = 355.0
+size_flags_vertical = 6
 dragger_visibility = 1
 
 [node name="Labels" type="VBoxContainer" parent="Container/Options"]
@@ -116,18 +129,20 @@ text = "Up"
 
 [node name="Begin" type="Button" parent="Container"]
 margin_left = 456.0
-margin_top = 344.0
+margin_top = 397.0
 margin_right = 569.0
-margin_bottom = 377.0
+margin_bottom = 430.0
 size_flags_horizontal = 4
+size_flags_vertical = 2
 custom_fonts/font = ExtResource( 1 )
 text = "Begin Quiz"
 
 [node name="ErrorLabel" type="Label" parent="Container"]
-margin_top = 381.0
+margin_top = 584.0
 margin_right = 1025.0
-margin_bottom = 395.0
+margin_bottom = 598.0
 
+[connection signal="pressed" from="Container/NavigationBar/QuitButton" to="." method="_on_QuitButton_pressed"]
 [connection signal="item_selected" from="Container/Options/Options/ListSelection" to="." method="_on_ListSelection_item_selected"]
 [connection signal="button_down" from="Container/Options/Options/Length/DecreaseButton" to="." method="_on_DecreaseButton_button_down"]
 [connection signal="button_up" from="Container/Options/Options/Length/DecreaseButton" to="." method="_on_DecreaseButton_button_up"]

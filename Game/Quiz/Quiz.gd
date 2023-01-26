@@ -62,8 +62,11 @@ func draw_question():
 func answer_question(kanji_id):
 	if kanji_id == correct_kanji:
 		correct_label.text = "Correct"
+		JapaneseDictionary.update_stats(correct_kanji, true)
 		score += 1
-	else: correct_label.text = "Incorrect"
+	else: 
+		correct_label.text = "Incorrect"
+		JapaneseDictionary.update_stats(correct_kanji, false)
 	correct_label.visible = true
 	
 	#hides all but correct button, on the correct button disconnects the signal to prevent spamming button.
@@ -113,4 +116,8 @@ func close_kanji_screen():
 	quiz_screen.visible = true
 
 func _on_RestartButton_pressed():
+	get_tree().change_scene("res://Game/Quiz/QuizLoader.tscn")
+
+
+func _on_QuitButton_pressed():
 	get_tree().change_scene("res://Game/Quiz/QuizLoader.tscn")
