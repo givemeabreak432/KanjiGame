@@ -55,12 +55,13 @@ func parse_dict(file_name = dict):
 #returns a list of IDs
 #returns full list if return is size 0
 func search(text = ""):
+	var text_hiragana = translate_romaji(text)
 	var search_list = []
 	for i in size():
 		var kanji = get_kanji(i)
-		if text.to_lower() in kanji.get_meaning(true).to_lower():
+		if text.to_lower() in kanji.get_meaning(true, " ").to_lower():
 			search_list.append(i)
-		elif text == kanji.get_kanji() or text in kanji.get_kun_yomi() or text in kanji.get_on_yomi():
+		elif text == kanji.get_kanji() or text_hiragana in kanji.get_kun_yomi(true, " ") or text_hiragana in kanji.get_on_yomi(true, " "):
 			search_list.append(i)
 	if search_list.size() == 0:
 		search_list = range(size())
