@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Game/Menus/KanjiInfo.gd" type="Script" id=1]
 [ext_resource path="res://Game/Menus/ListSelector.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Game/Menus/ListKanjiAdder.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Assets/LINE_Seed_JP/App/OTF/LINESeedJP_A_OTF_Rg.otf" type="DynamicFontData" id=7]
 [ext_resource path="res://Assets/LINE_Seed_Sans_EN/App/OTF/LINESeedSans_A_Rg.otf" type="DynamicFontData" id=8]
+[ext_resource path="res://Game/Menus/StatsScreenDisplay.tscn" type="PackedScene" id=9]
 
 [sub_resource type="DynamicFont" id=1]
 size = 12
@@ -93,7 +94,7 @@ margin_bottom = 51.0
 size_flags_horizontal = 8
 size_flags_vertical = 0
 text = "Dictionary"
-items = [ "Dictionary", null, false, 0, null, "Flash Cards", null, false, 1, null ]
+items = [ "Dictionary", null, false, 0, null, "Flash Cards", null, false, 1, null, "Study Stats", null, false, 2, null ]
 selected = 0
 
 [node name="DictionaryDisplay" parent="VBoxContainer" instance=ExtResource( 3 )]
@@ -111,6 +112,11 @@ margin_right = 0.0
 margin_bottom = 48.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
+
+[node name="StatsScreenDisplay" parent="VBoxContainer" instance=ExtResource( 9 )]
+visible = false
+margin_top = 59.0
+margin_bottom = 600.0
 
 [connection signal="pressed" from="VBoxContainer/NavigationContainer/BackButton" to="." method="_on_BackButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/NavigationContainer/RemoveKanji" to="." method="_on_RemoveKanji_pressed"]

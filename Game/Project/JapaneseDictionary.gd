@@ -96,6 +96,21 @@ func update_stats(kanji_id, answered_correctly):
 			config.set_value(kanji_id, "correct", 1)
 	config.save(config_file)
 
+#returns number of times a particular kanji has been quized on
+func get_quizes(kanji_id):
+	kanji_id = str(kanji_id)
+	if config.has_section_key(kanji_id, "quizes"):
+		return config.get_value(kanji_id, "quizes")
+	else: return 0
+
+#returns number of times a particular kanji has been correctly selected in a quiz
+func get_answers(kanji_id):
+	kanji_id = str(kanji_id)
+	if config.has_section_key(kanji_id, "correct"):
+		return config.get_value(kanji_id, "correct")
+	else: return 0
+
+#returns a list of kanji that only have 1 radical saved aka radicals themselves
 func get_radicals():
 	var radicals = []
 	for each in size():

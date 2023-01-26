@@ -19,6 +19,7 @@ onready var list_adder = $VBoxContainer/NavigationContainer/ListAddKanji
 onready var remove_kanji_popup = $VBoxContainer/NavigationContainer/RemoveKanji/RemoveKanjiPopup
 onready var dictionary_display = $VBoxContainer/DictionaryDisplay
 onready var flash_card_display = $VBoxContainer/FlashCardDisplay
+onready var stats_screen_display = $VBoxContainer/StatsScreenDisplay
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -99,11 +100,15 @@ func _on_DisplayMode_item_selected(index):
 	if index == 0:
 		dictionary_display.visible = true
 		flash_card_display.visible = false
+		stats_screen_display.visible = false
 	if index == 1:
 		dictionary_display.visible = false
 		flash_card_display.visible = true
-		
-
+		stats_screen_display.visible = false
+	if index == 2:
+		dictionary_display.visible = false
+		flash_card_display.visible = false
+		stats_screen_display.visible = true
 #search function. Should create a custom list that hits all searches. 
 #Should search onyomi, kunyomi, meanings
 func _on_Search_text_entered(new_text):

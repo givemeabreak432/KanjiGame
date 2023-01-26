@@ -58,8 +58,7 @@ Work on list selector:
 -duplicate names crash game
 
 japanesedictionary
--add radicals. Possibly add functions to Lists to track radicals as well for study
--quiz on radicals too
+-refactor romaji converter function, as it's messy. It functions well enough.
 
 kanji-scroller
 4 tabs:
@@ -79,7 +78,7 @@ list of all kanji displayed as tiles, scrollable and selectable
 
 kanji search function
 -search supports kanji, meaning, on/kun yomi
--however, cannot convert romaji -> kana yet
+
 
 
 Quiz function-
@@ -90,13 +89,12 @@ Quiz function-
 -test editing lists in the middle of quiz. should provide no error.
 -add quiz complete error states
 -Fix font sizes with longer quiz answers
+-radicals quiz?
 
 kanji-stats
-tie into quiz
-track study rates/correct for each kanji
-sort based on stats in dictionary screen
--stats can show in info screen, but only as a button in the corner
--or possibly a display mode to show quiz stats
+-initial stats for kanji completed
+-Maybe add moree stats based on quiz type taken
+-only show quized-on kanji
 
 -other non quiz games?
 -Full dictionary - need to find free, online translations
