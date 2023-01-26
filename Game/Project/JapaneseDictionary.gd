@@ -102,9 +102,30 @@ func translate_romaji(input):
 			i+=1
 			continue
 		else:
+			if input[i] == "n":
+				if i + 1 < input.length():
+					if (input[i+1] == "a" or input[i+1] == "i" or input[i+1] == "u" or input[i+1] == "e" or input[i+1] == "o"):
+						pass
+					else:
+						output+="ん"
+						i+=1
+						continue
+				else:
+					output+="ん"
+					i+=1
+					continue
 			if i+1 < input.length(): #make sure next character exists
+				if i+2 < input.length() and input.substr(i,2) == "ch" and not inserted_y: #preparing little y: cha
+					if input.substr(i,3) == "chi":
+						pass #no adding characters, chi is covered laterr
+					else:
+						input = input.insert(i+2, "iy") #chu -> chi+yu
+						inserted_y = true
 				if i+2 < input.length() and input[i+1] == "y" and not inserted_y: #preparing little y: kya
-					input = input.insert(i+1, "i")
+					input = input.insert(i+1, "i") #kya -> ki + ya
+					inserted_y = true
+				if input.substr(i, 2) == "ju":
+					input = input.insert(i+1, "iy") #ju -> ji + yu
 					inserted_y = true
 				if input[i+1] == "a" or input[i+1] == "i" or input[i+1] == "u" or input[i+1] == "e" or input[i+1] == "o":
 					match input.substr(i,2): #excludes shi, chi, tsu, dji, dzu
