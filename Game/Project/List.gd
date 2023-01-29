@@ -53,7 +53,6 @@ func delete_list(list):
 	
 func get_list_keys():
 	return config.get_section_keys("lists")
-	
 
 #check if list in config file is empty
 #if list does not exist, will also return false
@@ -99,3 +98,9 @@ func remove_kanji_from_list(list, entry):
 		list_entries.erase(int(entry))
 		config.set_value("lists", list, list_entries)
 		config.save(config_file)
+
+#adds a list of kanji to selected list
+func add_many_kanji(list, kanji):
+	print(kanji)
+	for each in kanji:
+		add_kanji_to_list(list, each)

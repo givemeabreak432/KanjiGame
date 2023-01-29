@@ -17,7 +17,7 @@ func _init():
 	List.connect("already_in_list", self, "already_added")
 	populate_menu()
 
-#Reads what files exists in directory, connecg signal
+#Reads what files exists in directory, connecting signal
 func populate_menu():
 	popup = get_popup()
 	var dir = Directory.new()
@@ -35,9 +35,9 @@ func already_added():
 	notice_box.dialog_text = "Kanji Already Exists in List!"
 	notice_box.visible = true
 
-#on item pressed, we must find  kanji is being added. We already have the ID of list.
+#on item pressed, we must find  kanji that is being added. We already have the ID of list.
 #emit kanji_finder will send message to parent, which should have a kanji to return
+#this function simply emits the name of a list for the parent to do the work for calling list.
 func _on_item_pressed(id):
 	emit_signal("list_add_kanji", List.get_list_keys()[id])
 	#List.add_kanji_to_list()
-	pass

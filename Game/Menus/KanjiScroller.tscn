@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Game/Menus/KanjiScroller.gd" type="Script" id=1]
 [ext_resource path="res://Assets/LINE_Seed_JP/App/OTF/LINESeedJP_A_OTF_Rg.otf" type="DynamicFontData" id=2]
 [ext_resource path="res://Assets/LINE_Seed_Sans_EN/App/OTF/LINESeedSans_A_Rg.otf" type="DynamicFontData" id=3]
+[ext_resource path="res://Game/Menus/ListSelector.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Game/Menus/ListKanjiAdder.tscn" type="PackedScene" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 3 )
@@ -21,17 +23,17 @@ margin_bottom = 597.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ListSelectorContainer" type="HBoxContainer" parent="VBox"]
+[node name="FilterContainer" type="HBoxContainer" parent="VBox"]
 margin_right = 1019.0
 margin_bottom = 20.0
 
-[node name="KanjiButton" type="Button" parent="VBox/ListSelectorContainer"]
+[node name="KanjiButton" type="Button" parent="VBox/FilterContainer"]
 margin_right = 507.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
 text = "Kanji"
 
-[node name="RadicalButton" type="Button" parent="VBox/ListSelectorContainer"]
+[node name="RadicalButton" type="Button" parent="VBox/FilterContainer"]
 margin_left = 511.0
 margin_right = 1019.0
 margin_bottom = 20.0
@@ -48,8 +50,14 @@ margin_right = 20.0
 margin_bottom = 32.0
 text = "X"
 
+[node name="ListSelector" parent="VBox/NavigationContainer" instance=ExtResource( 4 )]
+margin_bottom = 32.0
+
+[node name="ListAddKanji" parent="VBox/NavigationContainer" instance=ExtResource( 5 )]
+margin_bottom = 32.0
+
 [node name="SearchBar" type="LineEdit" parent="VBox/NavigationContainer"]
-margin_left = 24.0
+margin_left = 111.0
 margin_right = 1019.0
 margin_bottom = 32.0
 size_flags_horizontal = 7
@@ -93,7 +101,7 @@ margin_left = 758.0
 margin_right = 1007.0
 size_flags_horizontal = 3
 
-[connection signal="pressed" from="VBox/ListSelectorContainer/RadicalButton" to="." method="_on_RadicalButton_pressed"]
+[connection signal="pressed" from="VBox/FilterContainer/RadicalButton" to="." method="_on_RadicalButton_pressed"]
 [connection signal="pressed" from="VBox/NavigationContainer/BackButton" to="." method="_on_BackButton_pressed"]
 [connection signal="text_entered" from="VBox/NavigationContainer/SearchBar" to="." method="_on_SearchBar_text_entered"]
 [connection signal="scroll_started" from="VBox/Scroller" to="." method="_on_Scroller_scroll_started"]

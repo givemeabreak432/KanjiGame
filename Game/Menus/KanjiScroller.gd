@@ -7,7 +7,8 @@ const QuizOption = preload("res://Game/Quiz/QuizOption.tscn")
 const KanjiInfo = preload("res://Game/Menus/KanjiInfo.tscn") 
 
 var kanji_page
-var search_list = []
+var current_list = []
+var held_kanji = []
 var scroll_start = 0*4 #scroll_start and scroll_end are used to indicate which buttons are loaded.
 var scroll_end = 16*4  #by default, it should load the first 16 rows of 4 buttons
 
@@ -15,6 +16,8 @@ onready var column1 = $VBox/Scroller/ScrollMargins/Row/Column1
 onready var column2 = $VBox/Scroller/ScrollMargins/Row/Column2
 onready var column3 = $VBox/Scroller/ScrollMargins/Row/Column3
 onready var column4 = $VBox/Scroller/ScrollMargins/Row/Column4
+onready var list_selector = $VBox/NavigationContainer/ListSelector
+onready var list_kanji_adder = $VBox/NavigationContainer/ListAddKanji
 onready var scroll_box = $VBox/Scroller
 onready var VBox = $VBox
 
@@ -23,24 +26,29 @@ func _ready():
 	#attempted workaround for scroller not working
 	#scroll_box.connect("scrolling", self, "_on_Scroller_scroll_started") 
 	load_buttons()
+	list_selector.connect("select_list", self, "load_list")
+	list_kanji_adder.connect("list_add_kanji", self, "add_held_kanji")
+	
 			
 func load_buttons():
-	if search_list.size() == 0:
-		search_list = range(JapaneseDictionary.size())
+	if current_list.size() == 0:
+		current_list = range(JapaneseDictionary.size())
 		
-	for i in search_list.size():
+	for i in current_list.size():
 		#if scroll_start > i: #skips first iterations of loop based on scroll
 		#	continue
 		#elif scroll_end < i: #stops looping at scroll
 		#	break
 		var button = QuizOption.instance()
-		button.set_kanji(search_list[i], true)
+		button.set_kanji(current_list[i], true)
+		button.holdable=true
 		match i%4:
 			0:column1.add_child(button)
 			1:column2.add_child(button)
 			2:column3.add_child(button)
 			3:column4.add_child(button)
 		button.connect("button_hit", self, "kanji_selected")
+		button.connect("button_held", self, "kanji_held")
 		
 func unload_buttons():
 	for each in column1.get_children() + column2.get_children() + column3.get_children() + column4.get_children():
@@ -62,7 +70,7 @@ func close_kanji_screen():
 
 
 func _on_SearchBar_text_entered(text):
-	search_list = JapaneseDictionary.search(text)
+	current_list = JapaneseDictionary.search(text)
 	unload_buttons()
 	load_buttons()
 
@@ -80,6 +88,24 @@ func _on_Scroller_scroll_started():
 
 #shows radicals - kanji with only one radical
 func _on_RadicalButton_pressed():
-	search_list = JapaneseDictionary.get_radicals()
+	current_list = JapaneseDictionary.get_radicals()
 	unload_buttons()
 	load_buttons()
+
+#loads a specifically selected list
+#called automatically from list_selector
+func load_list(list_name):
+	current_list = List.get_list_values(list_name)
+	unload_buttons()
+	load_buttons()
+
+#if the button is held down, adds kanji to list
+func kanji_held(kanji_id):
+	held_kanji.append(kanji_id)
+
+#removese kanji from list upon release of button
+func kanji_released(kanji_id):
+	pass
+
+func add_held_kanji(list):
+	List.add_many_kanji(list, held_kanji)
