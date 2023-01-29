@@ -9,8 +9,10 @@ var holdable = false #if this is off, button cannot be held down. Hold function 
 var is_held = false 
 var selected = false
 var held_length = 0
+
 signal button_hit
 signal button_held
+signal button_released
 
 func _ready():
 	pass # Replace with function body.
@@ -42,7 +44,12 @@ func set_kanji(kanji, correct):
 		self.text = JapaneseDictionary.get_kanji(kanji_id).get_kanji()
 	if(QuizSettings.quiz_type == 1):
 		self.text = JapaneseDictionary.get_kanji(kanji_id).get_meaning(true, ", ", 1)
-	
+
+func release_button():
+	selected = false
+	self.theme = load("res://Assets/InvisibleButton.tres") 
+	emit_signal("button_released", kanji_id)
+
 
 func _on_QuizOption_pressed():
 	if not selected:
@@ -52,7 +59,10 @@ func _on_QuizOption_pressed():
 func _on_QuizOption_button_down():
 	if holdable:
 		is_held = true
-
+	#calls "releases_button" after a  delay to de-select button
+	#delay is to prevent simultaneous pressed() signal from emitting "button_hit"
+	if selected: 
+		get_tree().create_timer(.1).connect("timeout", self, "release_button") 
 
 func _on_QuizOption_button_up():
 	if holdable:

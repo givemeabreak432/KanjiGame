@@ -49,7 +49,7 @@ func load_buttons():
 			3:column4.add_child(button)
 		button.connect("button_hit", self, "kanji_selected")
 		button.connect("button_held", self, "kanji_held")
-		
+		button.connect("button_released", self, "kanji_released")
 func unload_buttons():
 	for each in column1.get_children() + column2.get_children() + column3.get_children() + column4.get_children():
 		remove_child(each)
@@ -102,10 +102,12 @@ func load_list(list_name):
 #if the button is held down, adds kanji to list
 func kanji_held(kanji_id):
 	held_kanji.append(kanji_id)
+	print(held_kanji)
 
 #removese kanji from list upon release of button
 func kanji_released(kanji_id):
-	pass
+	held_kanji.erase(kanji_id)
+	print(held_kanji)
 
 func add_held_kanji(list):
 	List.add_many_kanji(list, held_kanji)
