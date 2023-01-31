@@ -84,7 +84,6 @@ func get_kanji(index):
 func update_stats(kanji_id, answered_correctly):
 	var quiz_num
 	kanji_id = str(kanji_id)
-	var kanji = get_kanji(kanji_id)
 	if not config.has_section_key(kanji_id, "quizes"):
 		quiz_num=1
 	else: quiz_num = config.get_value(kanji_id, "quizes") + 1

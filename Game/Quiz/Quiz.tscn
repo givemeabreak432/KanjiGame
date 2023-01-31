@@ -54,23 +54,17 @@ custom_fonts/font = SubResource( 1 )
 text = "Kanji"
 align = 1
 
-[node name="QuizOptionsBox" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 217.0
-margin_right = 1023.0
-margin_bottom = 407.0
-size_flags_vertical = 11
-
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_left = 511.0
-margin_top = 506.0
-margin_right = 511.0
-margin_bottom = 506.0
-size_flags_horizontal = 6
+margin_top = 312.0
+margin_right = 1023.0
+margin_bottom = 312.0
+size_flags_horizontal = 7
 size_flags_vertical = 6
 
 [node name="NextQuestion" type="Button" parent="VBoxContainer/HBoxContainer"]
 visible = false
-margin_right = 146.0
+margin_left = 438.0
+margin_right = 584.0
 margin_bottom = 33.0
 size_flags_horizontal = 6
 size_flags_vertical = 6
@@ -81,13 +75,20 @@ icon_align = 1
 [node name="RestartButton" type="Button" parent="VBoxContainer/HBoxContainer"]
 visible = false
 margin_left = 466.0
-margin_top = -20.0
-margin_right = 557.0
+margin_top = -18.0
+margin_right = 595.0
+margin_bottom = 15.0
 size_flags_horizontal = 6
 size_flags_vertical = 6
 custom_fonts/font = ExtResource( 4 )
 text = "Restart Quiz"
 icon_align = 1
+
+[node name="QuizOptionsBox" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 411.0
+margin_right = 1023.0
+margin_bottom = 601.0
+size_flags_vertical = 11
 
 [connection signal="pressed" from="VBoxContainer/NavigationControl/QuitButton" to="." method="_on_QuitButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/NextQuestion" to="." method="_on_NextQuestion_pressed"]

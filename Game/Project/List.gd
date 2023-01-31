@@ -100,7 +100,6 @@ func remove_kanji_from_list(list, entry):
 		config.save(config_file)
 
 #adds a list of kanji to selected list
-func add_many_kanji(list, kanji):
-	print(kanji)
-	for each in kanji:
+func add_many_kanji(list, kanji_list):
+	for each in kanji_list:
 		add_kanji_to_list(list, each)

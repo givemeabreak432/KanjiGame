@@ -11,10 +11,10 @@ var current_list = []
 var held_kanji = []
 var starting_buttons = 16*4  #by default, it should load the first 16 rows of 4 buttons
 
-onready var column1 = $VBox/Scroller/ScrollMargins/Row/Column1
-onready var column2 = $VBox/Scroller/ScrollMargins/Row/Column2
-onready var column3 = $VBox/Scroller/ScrollMargins/Row/Column3
-onready var column4 = $VBox/Scroller/ScrollMargins/Row/Column4
+onready var column1 = $VBox/Scroller/Row/Column1
+onready var column2 = $VBox/Scroller/Row/Column2
+onready var column3 = $VBox/Scroller/Row/Column3
+onready var column4 = $VBox/Scroller/Row/Column4
 onready var list_selector = $VBox/NavigationContainer/ListSelector
 onready var list_kanji_adder = $VBox/NavigationContainer/ListAddKanji
 onready var scroll_box = $VBox/Scroller

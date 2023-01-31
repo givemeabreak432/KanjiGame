@@ -70,15 +70,6 @@ kanji - radicals - hiragana - katakana
 -Radicals should also have their own unique info page
 -Katakana and Hiragana should also have their own info pages
 
-list of all kanji displayed as tiles, scrollable and selectable
--needs to be optimized - doesn't need to load all 2000+ buttons at once
---unsure if possible, scroll_started() does not work. Commented out related functionality
--add to navigation bar: multi-add kanji to list, back button
--seach sometimes results in strange layout - "king"
-
-kanji search function
--search supports kanji, meaning, on/kun yomi
-
 
 
 Quiz function-
@@ -93,7 +84,7 @@ Quiz function-
 
 kanji-stats
 -initial stats for kanji completed
--Maybe add moree stats based on quiz type taken
+-Maybe add more stats based on quiz type taken
 -only show quized-on kanji
 
 -other non quiz games?
