@@ -9,8 +9,7 @@ const KanjiInfo = preload("res://Game/Menus/KanjiInfo.tscn")
 var kanji_page
 var current_list = []
 var held_kanji = []
-var scroll_start = 0*4 #scroll_start and scroll_end are used to indicate which buttons are loaded.
-var scroll_end = 16*4  #by default, it should load the first 16 rows of 4 buttons
+var starting_buttons = 16*4  #by default, it should load the first 16 rows of 4 buttons
 
 onready var column1 = $VBox/Scroller/ScrollMargins/Row/Column1
 onready var column2 = $VBox/Scroller/ScrollMargins/Row/Column2
@@ -25,35 +24,41 @@ signal kanji_added
 
 
 func _ready():
-	#attempted workaround for scroller not working
-	#scroll_box.connect("scrolling", self, "_on_Scroller_scroll_started") 
-	load_buttons()
+	load_buttons(starting_buttons)
 	list_selector.connect("select_list", self, "load_list")
 	list_kanji_adder.connect("list_add_kanji", self, "add_held_kanji")
+
+func _process(delta):
+	if get_tree().get_nodes_in_group("buttons").size() < current_list.size():
+		create_button(get_tree().get_nodes_in_group("buttons").size())
+	pass
 	
-			
-func load_buttons():
+
+func load_buttons(number_of_buttons = current_list.size()):
 	if current_list.size() == 0:
 		current_list = range(JapaneseDictionary.size())
 		
-	for i in current_list.size():
-		#if scroll_start > i: #skips first iterations of loop based on scroll
-		#	continue
-		#elif scroll_end < i: #stops looping at scroll
-		#	break
-		var button = QuizOption.instance()
-		button.set_kanji(current_list[i], true)
-		button.holdable=true
-		match i%4:
-			0:column1.add_child(button)
-			1:column2.add_child(button)
-			2:column3.add_child(button)
-			3:column4.add_child(button)
-		button.connect("button_hit", self, "kanji_selected")
-		button.connect("button_held", self, "kanji_held")
-		button.connect("button_released", self, "kanji_released")
-		button.add_to_group("buttons")
+	for i in number_of_buttons:
+		if i >= current_list.size():
+			break
+		create_button(i)
+
+func create_button(kanji_id):
+	var button = QuizOption.instance()
+	button.set_kanji(current_list[kanji_id], true)
+	button.holdable=true
+	match kanji_id%4:
+		0:column1.add_child(button)
+		1:column2.add_child(button)
+		2:column3.add_child(button)
+		3:column4.add_child(button)
+	button.connect("button_hit", self, "kanji_selected")
+	button.connect("button_held", self, "kanji_held")
+	button.connect("button_released", self, "kanji_released")
+	button.add_to_group("buttons")
+	
 func unload_buttons():
+	held_kanji.clear() 
 	for each in column1.get_children() + column2.get_children() + column3.get_children() + column4.get_children():
 		remove_child(each)
 		each.queue_free()
@@ -80,14 +85,6 @@ func _on_SearchBar_text_entered(text):
 
 func _on_BackButton_pressed():
 	get_tree().change_scene("res://Game/Menus/TitleScreen.tscn")
-
-
-#scroll_started signal doesn't seem to work.
-func _on_Scroller_scroll_started():
-	print("test")
-	scroll_start = scroll_end
-	scroll_end = scroll_end + 4*4
-	load_buttons()
 
 #shows radicals - kanji with only one radical
 func _on_RadicalButton_pressed():
